@@ -1,2 +1,2 @@
-﻿using var game = new Speedy_Blupi.Game1();
+﻿using var game = new WindowsPhoneSpeedyBlupi.Game1();
 game.Run();

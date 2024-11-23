@@ -8,9 +8,9 @@ using System.Resources;
 using System.Runtime.CompilerServices;
 using WindowsPhoneSpeedyBlupi;
 
-[DebuggerNonUserCode]
-[GeneratedCode("System.Resources.Tools.StronglyTypedResourceBuilder", "4.0.0.0")]
-[CompilerGenerated]
+//[DebuggerNonUserCode]
+//[GeneratedCode("System.Resources.Tools.StronglyTypedResourceBuilder", "4.0.0.0")]
+//[CompilerGenerated]
 
 namespace WindowsPhoneSpeedyBlupi
 {
