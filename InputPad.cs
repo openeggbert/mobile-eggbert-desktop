@@ -3,6 +3,8 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using Microsoft.Xna.Framework.Input;
+
 //using Microsoft.Devices.Sensors;
 using Microsoft.Xna.Framework.Input.Touch;
 using WindowsPhoneSpeedyBlupi;
@@ -39,7 +41,7 @@ namespace WindowsPhoneSpeedyBlupi
 
         private Def.ButtonGlygh buttonPressed;
 
-        private int totalTouch;
+        private int touchCount;
 
         private bool accelStarted;
 
@@ -63,7 +65,7 @@ namespace WindowsPhoneSpeedyBlupi
         {
             get
             {
-                return totalTouch;
+                return touchCount;
             }
         }
 
@@ -254,16 +256,37 @@ namespace WindowsPhoneSpeedyBlupi
             int num3 = 0;
             padPressed = false;
             Def.ButtonGlygh buttonGlygh = Def.ButtonGlygh.None;
-            TouchCollection state = TouchPanel.GetState();
-            totalTouch = state.Count;
-            foreach (TouchLocation item in state)
+            TouchCollection touches = TouchPanel.GetState();
+            touchCount = touches.Count;
+            List<TinyPoint> touchesOrClicks = new List<TinyPoint>();
+            foreach (TouchLocation item in touches)
             {
-                if (item.State == TouchLocationState.Pressed || item.State == TouchLocationState.Moved)
+                if (item.State == TouchLocationState.Pressed || item.State == TouchLocationState.Moved) { 
+                TinyPoint tinyPoint = default(TinyPoint);
+                tinyPoint.X = (int)item.Position.X;
+                tinyPoint.Y = (int)item.Position.Y;
+                touchesOrClicks.Add(tinyPoint);
+                }
+            }
+                
+
+            MouseState mouseState = Mouse.GetState();
+            if (mouseState.LeftButton == ButtonState.Pressed)
+            {
+                touchCount++;
+                TinyPoint click = new TinyPoint();
+                click.X = mouseState.X;
+                click.Y = mouseState.Y;
+                touchesOrClicks.Add(click);
+            }
+
+
+
+            foreach (TinyPoint touchOrClick in touchesOrClicks)
+            {
+                
                 {
-                    TinyPoint tinyPoint = default(TinyPoint);
-                    tinyPoint.X = (int)item.Position.X;
-                    tinyPoint.Y = (int)item.Position.Y;
-                    TinyPoint tinyPoint2 = tinyPoint;
+                    TinyPoint tinyPoint2 = touchOrClick;
                     if (!accelStarted && Misc.IsInside(GetPadBounds(PadCenter, padSize), tinyPoint2))
                     {
                         padPressed = true;
