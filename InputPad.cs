@@ -4,7 +4,6 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using Microsoft.Xna.Framework.Input;
-using Microsoft.Devices.Sensors;
 using Microsoft.Xna.Framework.Input.Touch;
 using WindowsPhoneSpeedyBlupi;
 
@@ -214,8 +213,8 @@ namespace WindowsPhoneSpeedyBlupi
             this.sound = sound;
             this.gameData = gameData;
             pressedGlyphs = new List<Def.ButtonGlygh>();
-            accelSensor = new Accelerometer();
-            ((SensorBase<AccelerometerReading>)(object)accelSensor).CurrentValueChanged += HandleAccelSensorCurrentValueChanged;
+            accelSensor = AccelerometerFactory.Create();
+            accelSensor.CurrentValueChanged += HandleAccelSensorCurrentValueChanged;
             accelSlider = new Slider
             {
                 TopLeftCorner = new TinyPoint
@@ -856,13 +855,14 @@ namespace WindowsPhoneSpeedyBlupi
                 accelStarted = false;
             }
         }
+        
 
-        private void HandleAccelSensorCurrentValueChanged(object sender, SensorReadingEventArgs<AccelerometerReading> e)
+        private void HandleAccelSensorCurrentValueChanged(object sender, AccelerometerEventArgs e)
         {
             //IL_0001: Unknown result type (might be due to invalid IL or missing references)
             //IL_0006: Unknown result type (might be due to invalid IL or missing references)
-            AccelerometerReading sensorReading = e.SensorReading;
-            float y = ((AccelerometerReading)(ref sensorReading)).Acceleration.Y;
+            
+            float y = e.Y;
             float num = (1f - (float)gameData.AccelSensitivity) * 0.06f + 0.04f;
             float num2 = (accelLastState ? (num * 0.6f) : num);
             if (y > num2)
