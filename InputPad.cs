@@ -3,7 +3,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using Microsoft.Devices.Sensors;
+//using Microsoft.Devices.Sensors;
 using Microsoft.Xna.Framework.Input.Touch;
 using WindowsPhoneSpeedyBlupi;
 
@@ -25,7 +25,7 @@ namespace WindowsPhoneSpeedyBlupi
 
         private readonly List<Def.ButtonGlygh> pressedGlyphs;
 
-        private readonly Accelerometer accelSensor;
+        //private readonly Accelerometer accelSensor;
 
         private readonly Slider accelSlider;
 
@@ -213,17 +213,17 @@ namespace WindowsPhoneSpeedyBlupi
             this.sound = sound;
             this.gameData = gameData;
             pressedGlyphs = new List<Def.ButtonGlygh>();
-            accelSensor = new Accelerometer();
-            ((SensorBase<AccelerometerReading>)(object)accelSensor).CurrentValueChanged += HandleAccelSensorCurrentValueChanged;
-            accelSlider = new Slider
-            {
-                TopLeftCorner = new TinyPoint
-                {
-                    X = 320,
-                    Y = 400
-                },
-                Value = this.gameData.AccelSensitivity
-            };
+            //accelSensor = new Accelerometer();
+            //((SensorBase<AccelerometerReading>)(object)accelSensor).CurrentValueChanged += HandleAccelSensorCurrentValueChanged;
+            //accelSlider = new Slider
+            //{
+            //    TopLeftCorner = new TinyPoint
+            //    {
+            //        X = 320,
+            //        Y = 400
+            //    },
+            //    Value = this.gameData.AccelSensitivity
+            //};
             lastButtonDown = Def.ButtonGlygh.None;
             buttonPressed = Def.ButtonGlygh.None;
         }
@@ -805,69 +805,69 @@ namespace WindowsPhoneSpeedyBlupi
 
         private void StartAccel()
         {
-            try
-            {
-                accelSensor.Start();
-                accelStarted = true;
-            }
-            catch (AccelerometerFailedException)
-            {
-                accelStarted = false;
-            }
-            catch (UnauthorizedAccessException)
-            {
-                accelStarted = false;
-            }
+            //try
+            //{
+            //    accelSensor.Start();
+            //    accelStarted = true;
+            //}
+            //catch (AccelerometerFailedException)
+            //{
+            //    accelStarted = false;
+            //}
+            //catch (UnauthorizedAccessException)
+            //{
+            //    accelStarted = false;
+            //}
         }
 
         private void StopAccel()
         {
-            if (accelStarted)
-            {
-                try
-                {
-                    accelSensor.Stop();
-                }
-                catch (AccelerometerFailedException)
-                {
-                }
-                accelStarted = false;
-            }
+            //if (accelStarted)
+            //{
+            //    try
+            //    {
+            //        accelSensor.Stop();
+            //    }
+            //    catch (AccelerometerFailedException)
+            //    {
+            //    }
+            //    accelStarted = false;
+            //}
         }
 
-        private void HandleAccelSensorCurrentValueChanged(object sender, SensorReadingEventArgs<AccelerometerReading> e)
-        {
-            //IL_0001: Unknown result type (might be due to invalid IL or missing references)
-            //IL_0006: Unknown result type (might be due to invalid IL or missing references)
-            AccelerometerReading sensorReading = e.SensorReading;
-            float y = ((AccelerometerReading)(ref sensorReading)).Acceleration.Y;
-            float num = (1f - (float)gameData.AccelSensitivity) * 0.06f + 0.04f;
-            float num2 = (accelLastState ? (num * 0.6f) : num);
-            if (y > num2)
-            {
-                accelSpeedX = 0.0 - Math.Min((double)y * 0.25 / (double)num + 0.25, 1.0);
-            }
-            else if (y < 0f - num2)
-            {
-                accelSpeedX = Math.Min((double)(0f - y) * 0.25 / (double)num + 0.25, 1.0);
-            }
-            else
-            {
-                accelSpeedX = 0.0;
-            }
-            accelLastState = accelSpeedX != 0.0;
-            if (accelWaitZero)
-            {
-                if (accelSpeedX == 0.0)
-                {
-                    accelWaitZero = false;
-                }
-                else
-                {
-                    accelSpeedX = 0.0;
-                }
-            }
-        }
+        //private void HandleAccelSensorCurrentValueChanged(object sender, SensorReadingEventArgs<AccelerometerReading> e)
+        //{
+        //    //IL_0001: Unknown result type (might be due to invalid IL or missing references)
+        //    //IL_0006: Unknown result type (might be due to invalid IL or missing references)
+        //    AccelerometerReading sensorReading = e.SensorReading;
+        //    float y = ((AccelerometerReading)(ref sensorReading)).Acceleration.Y;
+        //    float num = (1f - (float)gameData.AccelSensitivity) * 0.06f + 0.04f;
+        //    float num2 = (accelLastState ? (num * 0.6f) : num);
+        //    if (y > num2)
+        //    {
+        //        accelSpeedX = 0.0 - Math.Min((double)y * 0.25 / (double)num + 0.25, 1.0);
+        //    }
+        //    else if (y < 0f - num2)
+        //    {
+        //        accelSpeedX = Math.Min((double)(0f - y) * 0.25 / (double)num + 0.25, 1.0);
+        //    }
+        //    else
+        //    {
+        //        accelSpeedX = 0.0;
+        //    }
+        //    accelLastState = accelSpeedX != 0.0;
+        //    if (accelWaitZero)
+        //    {
+        //        if (accelSpeedX == 0.0)
+        //        {
+        //            accelWaitZero = false;
+        //        }
+        //        else
+        //        {
+        //            accelSpeedX = 0.0;
+        //        }
+        //    }
+        //}
     }
 
 }
