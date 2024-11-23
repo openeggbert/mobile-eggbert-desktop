@@ -17,6 +17,321 @@
   <ItemGroup>
     <None Remove="icon.ico" />
     <None Remove="icon.bmp" />
+    <None Remove="worlds\world001.txt" />
+    <None Remove="worlds\world010.txt" />
+    <None Remove="worlds\world011.txt" />
+    <None Remove="worlds\world012.txt" />
+    <None Remove="worlds\world013.txt" />
+    <None Remove="worlds\world014.txt" />
+    <None Remove="worlds\world020.txt" />
+    <None Remove="worlds\world021.txt" />
+    <None Remove="worlds\world022.txt" />
+    <None Remove="worlds\world023.txt" />
+    <None Remove="worlds\world024.txt" />
+    <None Remove="worlds\world025.txt" />
+    <None Remove="worlds\world030.txt" />
+    <None Remove="worlds\world031.txt" />
+    <None Remove="worlds\world032.txt" />
+    <None Remove="worlds\world033.txt" />
+    <None Remove="worlds\world034.txt" />
+    <None Remove="worlds\world040.txt" />
+    <None Remove="worlds\world041.txt" />
+    <None Remove="worlds\world042.txt" />
+    <None Remove="worlds\world043.txt" />
+    <None Remove="worlds\world044.txt" />
+    <None Remove="worlds\world045.txt" />
+    <None Remove="worlds\world046.txt" />
+    <None Remove="worlds\world050.txt" />
+    <None Remove="worlds\world051.txt" />
+    <None Remove="worlds\world052.txt" />
+    <None Remove="worlds\world053.txt" />
+    <None Remove="worlds\world054.txt" />
+    <None Remove="worlds\world055.txt" />
+    <None Remove="worlds\world056.txt" />
+    <None Remove="worlds\world057.txt" />
+    <None Remove="worlds\world058.txt" />
+    <None Remove="worlds\world060.txt" />
+    <None Remove="worlds\world061.txt" />
+    <None Remove="worlds\world062.txt" />
+    <None Remove="worlds\world063.txt" />
+    <None Remove="worlds\world064.txt" />
+    <None Remove="worlds\world065.txt" />
+    <None Remove="worlds\world066.txt" />
+    <None Remove="worlds\world070.txt" />
+    <None Remove="worlds\world071.txt" />
+    <None Remove="worlds\world072.txt" />
+    <None Remove="worlds\world073.txt" />
+    <None Remove="worlds\world074.txt" />
+    <None Remove="worlds\world075.txt" />
+    <None Remove="worlds\world080.txt" />
+    <None Remove="worlds\world081.txt" />
+    <None Remove="worlds\world082.txt" />
+    <None Remove="worlds\world083.txt" />
+    <None Remove="worlds\world084.txt" />
+    <None Remove="worlds\world090.txt" />
+    <None Remove="worlds\world091.txt" />
+    <None Remove="worlds\world092.txt" />
+    <None Remove="worlds\world093.txt" />
+    <None Remove="worlds\world094.txt" />
+    <None Remove="worlds\world095.txt" />
+    <None Remove="worlds\world100.txt" />
+    <None Remove="worlds\world101.txt" />
+    <None Remove="worlds\world102.txt" />
+    <None Remove="worlds\world103.txt" />
+    <None Remove="worlds\world104.txt" />
+    <None Remove="worlds\world105.txt" />
+    <None Remove="worlds\world106.txt" />
+    <None Remove="worlds\world107.txt" />
+    <None Remove="worlds\world110.txt" />
+    <None Remove="worlds\world111.txt" />
+    <None Remove="worlds\world112.txt" />
+    <None Remove="worlds\world113.txt" />
+    <None Remove="worlds\world114.txt" />
+    <None Remove="worlds\world115.txt" />
+    <None Remove="worlds\world120.txt" />
+    <None Remove="worlds\world121.txt" />
+    <None Remove="worlds\world122.txt" />
+    <None Remove="worlds\world123.txt" />
+    <None Remove="worlds\world124.txt" />
+    <None Remove="worlds\world125.txt" />
+    <None Remove="worlds\world199.txt" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="worlds\world001.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="worlds\world010.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="worlds\world011.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="worlds\world012.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="worlds\world013.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="worlds\world014.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="worlds\world020.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="worlds\world021.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="worlds\world022.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="worlds\world023.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="worlds\world024.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="worlds\world025.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="worlds\world030.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="worlds\world031.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="worlds\world032.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="worlds\world033.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="worlds\world034.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="worlds\world040.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="worlds\world041.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="worlds\world042.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="worlds\world043.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="worlds\world044.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="worlds\world045.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="worlds\world046.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="worlds\world050.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="worlds\world051.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="worlds\world052.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="worlds\world053.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="worlds\world054.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="worlds\world055.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="worlds\world056.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="worlds\world057.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="worlds\world058.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="worlds\world060.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="worlds\world061.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="worlds\world062.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="worlds\world063.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="worlds\world064.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="worlds\world065.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="worlds\world066.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="worlds\world070.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="worlds\world071.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="worlds\world072.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="worlds\world073.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="worlds\world074.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="worlds\world075.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="worlds\world080.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="worlds\world081.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="worlds\world082.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="worlds\world083.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="worlds\world084.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="worlds\world090.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="worlds\world091.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="worlds\world092.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="worlds\world093.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="worlds\world094.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="worlds\world095.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="worlds\world100.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="worlds\world101.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="worlds\world102.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="worlds\world103.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="worlds\world104.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="worlds\world105.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="worlds\world106.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="worlds\world107.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="worlds\world110.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="worlds\world111.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="worlds\world112.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="worlds\world113.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="worlds\world114.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="worlds\world115.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="worlds\world120.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="worlds\world121.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="worlds\world122.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="worlds\world123.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="worlds\world124.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="worlds\world125.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="worlds\world199.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="icon.ico">

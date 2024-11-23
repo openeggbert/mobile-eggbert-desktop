@@ -1,6 +1,7 @@
 ﻿// WindowsPhoneSpeedyBlupi, Version=1.0.0.5, Culture=neutral, PublicKeyToken=6db12cd62dbec439
 // WindowsPhoneSpeedyBlupi.Worlds
 using System;
+using System.Diagnostics;
 using System.Globalization;
 using System.IO;
 using System.IO.IsolatedStorage;
@@ -43,6 +44,8 @@ namespace WindowsPhoneSpeedyBlupi
             }
             catch
             {
+                Debug.Write("Fatal error. Loading world failed: " + worldFilename + "\n");
+                Environment.Exit(1);
             }
             if (text == null)
             {
