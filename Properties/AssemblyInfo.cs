@@ -6,8 +6,8 @@ using System.Resources;
 // General Information about an assembly is controlled through the following 
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("Speedy Blupi")]
-[assembly: AssemblyProduct("Speedy Blupi")]
+//[assembly: AssemblyTitle("Speedy Blupi")]
+//[assembly: AssemblyProduct("Speedy Blupi")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyCompany("Dada Games")]
 [assembly: AssemblyCopyright("Copyright © 2013")]
@@ -16,7 +16,7 @@ using System.Resources;
 [assembly: NeutralResourcesLanguage("en-US")]
 
 // Configuration
-[assembly: AssemblyConfiguration("")]
+//[assembly: AssemblyConfiguration("")]
 [assembly: RuntimeCompatibility(WrapNonExceptionThrows = true)]
 [assembly: CompilationRelaxations(8)]
 

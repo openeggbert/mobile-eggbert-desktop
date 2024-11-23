@@ -4318,7 +4318,7 @@ namespace WindowsPhoneSpeedyBlupi
                     m_blupiSuspend = false;
                     m_blupiAir = true;
                     m_blupiAction = 5;
-                    end.Y = end.Y;
+                    end.Y = end.Y;//Todo : check : Assignment made to same variable; did you mean to assign something else?
                     m_blupiVitesseY = 0.0;
                     m_blupiNoBarre = 5;
                     m_blupiActionOuf = 65;
