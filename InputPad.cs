@@ -297,7 +297,10 @@ namespace WindowsPhoneSpeedyBlupi
                 if (newState.IsKeyDown(Keys.Space)) touchesOrClicks.Add(createTinyPoint(-1, Misc.keyboardPressToInt(KeyboardPress.Space)));
             }
 
-            KeyboardPress keyboardPress_ = KeyboardPress.None;
+            Boolean keyPressedUp = false;
+            Boolean keyPressedDown = false;
+            Boolean keyPressedLeft = false;
+            Boolean keyPressedRight = false;
             foreach (TinyPoint touchOrClick in touchesOrClicks)
             {
                 Boolean keyboardPressed = false;
@@ -306,11 +309,10 @@ namespace WindowsPhoneSpeedyBlupi
                     keyboardPressed = true;
                 }
                 KeyboardPress keyboardPress = keyboardPressed ? Misc.intToKeyboardPress(touchOrClick.Y) : KeyboardPress.None;
-                keyboardPress_ = keyboardPress;
-                if (keyboardPress_ != KeyboardPress.None)
-                {
-                    Debug.WriteLine("Pressed: " + keyboardPress_);
-                }
+                keyPressedUp = keyboardPress == KeyboardPress.Up;
+                keyPressedDown = keyboardPress == KeyboardPress.Down;
+                keyPressedLeft = keyboardPress == KeyboardPress.Left;
+                keyPressedRight = keyboardPress == KeyboardPress.Right;
 
                 {
                     TinyPoint tinyPoint2 = keyboardPressed ? createTinyPoint(1,1) : touchOrClick;
@@ -421,15 +423,11 @@ namespace WindowsPhoneSpeedyBlupi
                 Debug.WriteLine("PadCenter.Y=" + PadCenter.Y);
                 Debug.WriteLine("padTouchPos.X=" + padTouchPos.X);
                 Debug.WriteLine("padTouchPos.Y=" + padTouchPos.Y);
-                if (keyboardPress_ != KeyboardPress.None)
-                {
-                    switch (keyboardPress_)
                     {
-                        case KeyboardPress.Up: padTouchPos.X = PadCenter.X; padTouchPos.Y = PadCenter.Y - 30;break;
-                        case KeyboardPress.Down: padTouchPos.X = PadCenter.X; padTouchPos.Y = PadCenter.Y + 30; break;
-                        case KeyboardPress.Left: padTouchPos.X = PadCenter.X - 30; padTouchPos.Y = PadCenter.Y; break;
-                        case KeyboardPress.Right: padTouchPos.X = PadCenter.X + 30; padTouchPos.Y = PadCenter.Y; break;
-                    }
+                    if (keyPressedUp) { padTouchPos.X = PadCenter.X; padTouchPos.Y = PadCenter.Y - 30; }
+                    if (keyPressedDown) { padTouchPos.X = PadCenter.X; padTouchPos.Y = PadCenter.Y + 30; }
+                    if (keyPressedLeft) { padTouchPos.X = PadCenter.X - 30; padTouchPos.Y = PadCenter.Y; }
+                    if (keyPressedRight) { padTouchPos.X = PadCenter.X + 30; padTouchPos.Y = PadCenter.Y;}
                 }
                 double horizontalPosition = padTouchPos.X - PadCenter.X;
                 double verticalPosition = padTouchPos.Y - PadCenter.Y;
