@@ -72,6 +72,11 @@ namespace WindowsPhoneSpeedyBlupi
             Cheat9
         }
 
+        public enum KeyboardPress
+        {
+            None, Up, Right, Down, Left, LeftControl, Space, Escape, Pause
+        }
+
         public const int LXIMAGE = 640;
 
         public const int LYIMAGE = 480;

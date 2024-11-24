@@ -4,6 +4,7 @@ using System;
 using Microsoft.Xna.Framework;
 //using Microsoft.Xna.Framework.GamerServices;//todo remove me
 using Microsoft.Xna.Framework.Input;
+using Microsoft.Xna.Framework.Input.Touch;
 using Microsoft.Xna.Framework.Media;
 using WindowsPhoneSpeedyBlupi;
 using static System.Net.Mime.MediaTypeNames;
@@ -98,8 +99,13 @@ namespace WindowsPhoneSpeedyBlupi
         public Game1()
         {
             Exiting += OnExiting;
+            if(!TouchPanel.GetCapabilities().IsConnected)
+            {
+                this.IsMouseVisible = true;
+                Mouse.SetCursor(MouseCursor.Arrow);
+            }
             graphics = new GraphicsDeviceManager(this);
-            graphics.IsFullScreen = true;
+            graphics.IsFullScreen = false;
             base.Content.RootDirectory = "Content";
             base.TargetElapsedTime = TimeSpan.FromTicks(500000L);
             base.InactiveSleepTime = TimeSpan.FromSeconds(1.0);

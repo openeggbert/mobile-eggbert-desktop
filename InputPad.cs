@@ -2,10 +2,12 @@
 // WindowsPhoneSpeedyBlupi.InputPad
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using Microsoft.Xna.Framework.Input;
 using Microsoft.Xna.Framework.Input.Touch;
 using WindowsPhoneSpeedyBlupi;
+using static WindowsPhoneSpeedyBlupi.Def;
 
 namespace WindowsPhoneSpeedyBlupi
 {
@@ -234,6 +236,13 @@ namespace WindowsPhoneSpeedyBlupi
             accelWaitZero = true;
         }
 
+        private TinyPoint createTinyPoint(int x, int y)
+        {
+            TinyPoint tinyPoint = new TinyPoint();
+            tinyPoint.X = x;
+            tinyPoint.Y = y;
+            return tinyPoint;
+        }
         public void Update()
         {
             pressedGlyphs.Clear();
@@ -249,8 +258,8 @@ namespace WindowsPhoneSpeedyBlupi
                     StopAccel();
                 }
             }
-            double num = 0.0;
-            double num2 = 0.0;
+            double horizontalChange = 0.0;
+            double verticalChange = 0.0;
             int num3 = 0;
             padPressed = false;
             Def.ButtonGlygh buttonGlygh = Def.ButtonGlygh.None;
@@ -278,23 +287,58 @@ namespace WindowsPhoneSpeedyBlupi
                 touchesOrClicks.Add(click);
             }
 
+            KeyboardState newState = Keyboard.GetState();
+            {
+                if(newState.IsKeyDown(Keys.LeftControl)) touchesOrClicks.Add(createTinyPoint(-1, Misc.keyboardPressToInt(KeyboardPress.LeftControl)));
+                if (newState.IsKeyDown(Keys.Up)) touchesOrClicks.Add(createTinyPoint(-1, Misc.keyboardPressToInt(KeyboardPress.Up)));
+                if (newState.IsKeyDown(Keys.Right)) touchesOrClicks.Add(createTinyPoint(-1, Misc.keyboardPressToInt(KeyboardPress.Right)));
+                if (newState.IsKeyDown(Keys.Down)) touchesOrClicks.Add(createTinyPoint(-1, Misc.keyboardPressToInt(KeyboardPress.Down)));
+                if (newState.IsKeyDown(Keys.Left)) touchesOrClicks.Add(createTinyPoint(-1, Misc.keyboardPressToInt(KeyboardPress.Left)));
+                if (newState.IsKeyDown(Keys.Space)) touchesOrClicks.Add(createTinyPoint(-1, Misc.keyboardPressToInt(KeyboardPress.Space)));
+            }
 
-
+            KeyboardPress keyboardPress_ = KeyboardPress.None;
             foreach (TinyPoint touchOrClick in touchesOrClicks)
             {
-                
+                Boolean keyboardPressed = false;
+                if (touchOrClick.X == -1)
                 {
-                    TinyPoint tinyPoint2 = touchOrClick;
+                    keyboardPressed = true;
+                }
+                KeyboardPress keyboardPress = keyboardPressed ? Misc.intToKeyboardPress(touchOrClick.Y) : KeyboardPress.None;
+                keyboardPress_ = keyboardPress;
+                if (keyboardPress_ != KeyboardPress.None)
+                {
+                    Debug.WriteLine("Pressed: " + keyboardPress_);
+                }
+
+                {
+                    TinyPoint tinyPoint2 = keyboardPressed ? createTinyPoint(1,1) : touchOrClick;
                     if (!accelStarted && Misc.IsInside(GetPadBounds(PadCenter, padSize), tinyPoint2))
                     {
                         padPressed = true;
                         padTouchPos = tinyPoint2;
                     }
+                    if(keyboardPress == KeyboardPress.Up || keyboardPress == KeyboardPress.Right || keyboardPress == KeyboardPress.Down || keyboardPress == KeyboardPress.Left)
+                    {
+                        padPressed = true;
+                    }
+                    Debug.WriteLine("padPressed=" + padPressed);
                     Def.ButtonGlygh buttonGlygh2 = ButtonDetect(tinyPoint2);
+                    Debug.WriteLine("buttonGlyph2 =" + buttonGlygh2);
                     if (buttonGlygh2 != 0)
                     {
                         pressedGlyphs.Add(buttonGlygh2);
                     }
+                    if(keyboardPressed)
+                        {
+                            switch (keyboardPress)
+                            {
+                                case KeyboardPress.LeftControl: buttonGlygh2 = Def.ButtonGlygh.PlayJump; pressedGlyphs.Add(buttonGlygh2); break;
+                                case KeyboardPress.Space: buttonGlygh2 = Def.ButtonGlygh.PlayAction; pressedGlyphs.Add(buttonGlygh2); break;
+                            }
+                        }
+                    
                     if ((Phase == Def.Phase.MainSetup || Phase == Def.Phase.PlaySetup) && accelSlider.Move(tinyPoint2))
                     {
                         gameData.AccelSensitivity = accelSlider.Value;
@@ -302,6 +346,7 @@ namespace WindowsPhoneSpeedyBlupi
                     switch (buttonGlygh2)
                     {
                         case Def.ButtonGlygh.PlayJump:
+                            Debug.WriteLine("Jumping detected");
                             accelWaitZero = false;
                             num3 |= 1;
                             break;
@@ -372,36 +417,58 @@ namespace WindowsPhoneSpeedyBlupi
             lastButtonDown = buttonGlygh;
             if (padPressed)
             {
-                double num4 = padTouchPos.X - PadCenter.X;
-                double num5 = padTouchPos.Y - PadCenter.Y;
-                if (num4 > 20.0)
+                Debug.WriteLine("PadCenter.X=" + PadCenter.X);
+                Debug.WriteLine("PadCenter.Y=" + PadCenter.Y);
+                Debug.WriteLine("padTouchPos.X=" + padTouchPos.X);
+                Debug.WriteLine("padTouchPos.Y=" + padTouchPos.Y);
+                if (keyboardPress_ != KeyboardPress.None)
                 {
-                    num += 1.0;
+                    switch (keyboardPress_)
+                    {
+                        case KeyboardPress.Up: padTouchPos.X = PadCenter.X; padTouchPos.Y = PadCenter.Y - 30;break;
+                        case KeyboardPress.Down: padTouchPos.X = PadCenter.X; padTouchPos.Y = PadCenter.Y + 30; break;
+                        case KeyboardPress.Left: padTouchPos.X = PadCenter.X - 30; padTouchPos.Y = PadCenter.Y; break;
+                        case KeyboardPress.Right: padTouchPos.X = PadCenter.X + 30; padTouchPos.Y = PadCenter.Y; break;
+                    }
                 }
-                if (num4 < -20.0)
+                double horizontalPosition = padTouchPos.X - PadCenter.X;
+                double verticalPosition = padTouchPos.Y - PadCenter.Y;
+
+                if (horizontalPosition > 20.0)
                 {
-                    num -= 1.0;
+                    horizontalChange += 1.0;
+                    Debug.WriteLine(" horizontalChange += 1.0;");
                 }
-                if (num5 > 20.0)
+                if (horizontalPosition < -20.0)
                 {
-                    num2 += 1.0;
+                    horizontalChange -= 1.0;
+                    Debug.WriteLine(" horizontalChange -= 1.0;");
+
                 }
-                if (num5 < -20.0)
+                if (verticalPosition > 20.0)
                 {
-                    num2 -= 1.0;
+                    verticalChange += 1.0;
+                    Debug.WriteLine(" verticalPosition += 1.0;");
+
                 }
+                if (verticalPosition < -20.0)
+                {
+                    verticalChange -= 1.0;
+                    Debug.WriteLine(" verticalPosition -= 1.0;");
+                }
+
             }
             if (accelStarted)
             {
-                num = accelSpeedX;
-                num2 = 0.0;
+                horizontalChange = accelSpeedX;
+                verticalChange = 0.0;
                 if (((uint)num3 & 4u) != 0)
                 {
-                    num2 = 1.0;
+                    verticalChange = 1.0;
                 }
             }
-            decor.SetSpeedX(num);
-            decor.SetSpeedY(num2);
+            decor.SetSpeedX(horizontalChange);
+            decor.SetSpeedY(verticalChange);
             decor.KeyChange(num3);
         }
 
