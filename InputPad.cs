@@ -268,14 +268,15 @@ namespace WindowsPhoneSpeedyBlupi
             List<TinyPoint> touchesOrClicks = new List<TinyPoint>();
             foreach (TouchLocation item in touches)
             {
-                if (item.State == TouchLocationState.Pressed || item.State == TouchLocationState.Moved) { 
-                TinyPoint tinyPoint = default(TinyPoint);
-                tinyPoint.X = (int)item.Position.X;
-                tinyPoint.Y = (int)item.Position.Y;
-                touchesOrClicks.Add(tinyPoint);
+                if (item.State == TouchLocationState.Pressed || item.State == TouchLocationState.Moved)
+                {
+                    TinyPoint tinyPoint = default(TinyPoint);
+                    tinyPoint.X = (int)item.Position.X;
+                    tinyPoint.Y = (int)item.Position.Y;
+                    touchesOrClicks.Add(tinyPoint);
                 }
             }
-                
+
 
             MouseState mouseState = Mouse.GetState();
             if (mouseState.LeftButton == ButtonState.Pressed)
@@ -289,7 +290,7 @@ namespace WindowsPhoneSpeedyBlupi
 
             KeyboardState newState = Keyboard.GetState();
             {
-                if(newState.IsKeyDown(Keys.LeftControl)) touchesOrClicks.Add(createTinyPoint(-1, Misc.keyboardPressToInt(KeyboardPress.LeftControl)));
+                if (newState.IsKeyDown(Keys.LeftControl)) touchesOrClicks.Add(createTinyPoint(-1, Misc.keyboardPressToInt(KeyboardPress.LeftControl)));
                 if (newState.IsKeyDown(Keys.Up)) touchesOrClicks.Add(createTinyPoint(-1, Misc.keyboardPressToInt(KeyboardPress.Up)));
                 if (newState.IsKeyDown(Keys.Right)) touchesOrClicks.Add(createTinyPoint(-1, Misc.keyboardPressToInt(KeyboardPress.Right)));
                 if (newState.IsKeyDown(Keys.Down)) touchesOrClicks.Add(createTinyPoint(-1, Misc.keyboardPressToInt(KeyboardPress.Down)));
@@ -315,13 +316,13 @@ namespace WindowsPhoneSpeedyBlupi
                 keyPressedRight = keyboardPress == KeyboardPress.Right;
 
                 {
-                    TinyPoint tinyPoint2 = keyboardPressed ? createTinyPoint(1,1) : touchOrClick;
+                    TinyPoint tinyPoint2 = keyboardPressed ? createTinyPoint(1, 1) : touchOrClick;
                     if (!accelStarted && Misc.IsInside(GetPadBounds(PadCenter, padSize), tinyPoint2))
                     {
                         padPressed = true;
                         padTouchPos = tinyPoint2;
                     }
-                    if(keyboardPress == KeyboardPress.Up || keyboardPress == KeyboardPress.Right || keyboardPress == KeyboardPress.Down || keyboardPress == KeyboardPress.Left)
+                    if (keyboardPress == KeyboardPress.Up || keyboardPress == KeyboardPress.Right || keyboardPress == KeyboardPress.Down || keyboardPress == KeyboardPress.Left)
                     {
                         padPressed = true;
                     }
@@ -332,15 +333,15 @@ namespace WindowsPhoneSpeedyBlupi
                     {
                         pressedGlyphs.Add(buttonGlygh2);
                     }
-                    if(keyboardPressed)
+                    if (keyboardPressed)
+                    {
+                        switch (keyboardPress)
                         {
-                            switch (keyboardPress)
-                            {
-                                case KeyboardPress.LeftControl: buttonGlygh2 = Def.ButtonGlygh.PlayJump; pressedGlyphs.Add(buttonGlygh2); break;
-                                case KeyboardPress.Space: buttonGlygh2 = Def.ButtonGlygh.PlayAction; pressedGlyphs.Add(buttonGlygh2); break;
-                            }
+                            case KeyboardPress.LeftControl: buttonGlygh2 = Def.ButtonGlygh.PlayJump; pressedGlyphs.Add(buttonGlygh2); break;
+                            case KeyboardPress.Space: buttonGlygh2 = Def.ButtonGlygh.PlayAction; pressedGlyphs.Add(buttonGlygh2); break;
                         }
-                    
+                    }
+
                     if ((Phase == Def.Phase.MainSetup || Phase == Def.Phase.PlaySetup) && accelSlider.Move(tinyPoint2))
                     {
                         gameData.AccelSensitivity = accelSlider.Value;
@@ -423,11 +424,32 @@ namespace WindowsPhoneSpeedyBlupi
                 Debug.WriteLine("PadCenter.Y=" + PadCenter.Y);
                 Debug.WriteLine("padTouchPos.X=" + padTouchPos.X);
                 Debug.WriteLine("padTouchPos.Y=" + padTouchPos.Y);
+                {
+                    if (keyPressedUp)
                     {
-                    if (keyPressedUp) { padTouchPos.X = PadCenter.X; padTouchPos.Y = PadCenter.Y - 30; }
-                    if (keyPressedDown) { padTouchPos.X = PadCenter.X; padTouchPos.Y = PadCenter.Y + 30; }
-                    if (keyPressedLeft) { padTouchPos.X = PadCenter.X - 30; padTouchPos.Y = PadCenter.Y; }
-                    if (keyPressedRight) { padTouchPos.X = PadCenter.X + 30; padTouchPos.Y = PadCenter.Y;}
+                        padTouchPos.Y = PadCenter.Y - 30;
+                        padTouchPos.X = PadCenter.X;
+                        if (keyPressedLeft) padTouchPos.X = PadCenter.X - 30;
+                        if (keyPressedRight) padTouchPos.X = PadCenter.X + 30;
+                    }
+                    if (keyPressedDown) { 
+                        padTouchPos.Y = PadCenter.Y + 30;
+                        padTouchPos.X = PadCenter.X;
+                        if (keyPressedLeft) padTouchPos.X = PadCenter.X - 30;
+                        if (keyPressedRight) padTouchPos.X = PadCenter.X + 30;
+                    }
+                    if (keyPressedLeft) { 
+                        padTouchPos.X = PadCenter.X - 30;
+                        padTouchPos.Y = PadCenter.Y;
+                        if (keyPressedUp) padTouchPos.Y = PadCenter.Y - 30;
+                        if (keyPressedDown) padTouchPos.Y = PadCenter.Y + 30;
+                    }
+                    if (keyPressedRight) { 
+                        padTouchPos.X = PadCenter.X + 30;
+                        padTouchPos.Y = PadCenter.Y;
+                        if (keyPressedUp) padTouchPos.Y = PadCenter.Y - 30;
+                        if (keyPressedDown) padTouchPos.Y = PadCenter.Y + 30;
+                    }
                 }
                 double horizontalPosition = padTouchPos.X - PadCenter.X;
                 double verticalPosition = padTouchPos.Y - PadCenter.Y;
@@ -920,13 +942,13 @@ namespace WindowsPhoneSpeedyBlupi
                 accelStarted = false;
             }
         }
-        
+
 
         private void HandleAccelSensorCurrentValueChanged(object sender, AccelerometerEventArgs e)
         {
             //IL_0001: Unknown result type (might be due to invalid IL or missing references)
             //IL_0006: Unknown result type (might be due to invalid IL or missing references)
-            
+
             float y = e.Y;
             float num = (1f - (float)gameData.AccelSensitivity) * 0.06f + 0.04f;
             float num2 = (accelLastState ? (num * 0.6f) : num);
