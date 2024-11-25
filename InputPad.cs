@@ -314,10 +314,10 @@ namespace WindowsPhoneSpeedyBlupi
                     keyboardPressed = true;
                 }
                 KeyboardPress keyboardPress = keyboardPressed ? Misc.intToKeyboardPress(touchOrClick.Y) : KeyboardPress.None;
-                keyPressedUp = keyboardPress == KeyboardPress.Up;
-                keyPressedDown = keyboardPress == KeyboardPress.Down;
-                keyPressedLeft = keyboardPress == KeyboardPress.Left;
-                keyPressedRight = keyboardPress == KeyboardPress.Right;
+                keyPressedUp = keyboardPress == KeyboardPress.Up ? true : keyPressedUp;
+                keyPressedDown = keyboardPress == KeyboardPress.Down ? true : keyPressedDown;
+                keyPressedLeft = keyboardPress == KeyboardPress.Left ? true : keyPressedLeft;
+                keyPressedRight = keyboardPress == KeyboardPress.Right ? true : keyPressedRight;
 
                 {
                     TinyPoint tinyPoint2 = keyboardPressed ? createTinyPoint(1, 1) : touchOrClick;
@@ -428,6 +428,10 @@ namespace WindowsPhoneSpeedyBlupi
                 Debug.WriteLine("PadCenter.Y=" + PadCenter.Y);
                 Debug.WriteLine("padTouchPos.X=" + padTouchPos.X);
                 Debug.WriteLine("padTouchPos.Y=" + padTouchPos.Y);
+                Debug.WriteLine("keyPressedUp=" + keyPressedUp);
+                Debug.WriteLine("keyPressedDown=" + keyPressedDown);
+                Debug.WriteLine("keyPressedLeft=" + keyPressedLeft);
+                Debug.WriteLine(" keyPressedRight=" + keyPressedRight);
                 {
                     if (keyPressedUp)
                     {
