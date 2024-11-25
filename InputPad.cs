@@ -277,7 +277,6 @@ namespace WindowsPhoneSpeedyBlupi
                 }
             }
 
-
             MouseState mouseState = Mouse.GetState();
             if (mouseState.LeftButton == ButtonState.Pressed)
             {
@@ -296,6 +295,11 @@ namespace WindowsPhoneSpeedyBlupi
                 if (newState.IsKeyDown(Keys.Down)) touchesOrClicks.Add(createTinyPoint(-1, Misc.keyboardPressToInt(KeyboardPress.Down)));
                 if (newState.IsKeyDown(Keys.Left)) touchesOrClicks.Add(createTinyPoint(-1, Misc.keyboardPressToInt(KeyboardPress.Left)));
                 if (newState.IsKeyDown(Keys.Space)) touchesOrClicks.Add(createTinyPoint(-1, Misc.keyboardPressToInt(KeyboardPress.Space)));
+            }
+            if (newState.IsKeyDown(Keys.F11))
+            {
+                game1.ToggleFullScreen ();
+                Debug.WriteLine("F11 was pressed.");
             }
 
             Boolean keyPressedUp = false;

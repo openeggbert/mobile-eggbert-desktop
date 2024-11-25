@@ -969,5 +969,15 @@ namespace WindowsPhoneSpeedyBlupi
             decor.MemorizeDoors(gameData);
             gameData.Write();
         }
+        //public void SetFullScreen(bool isFullScreen)
+        //{
+        //    this.graphics.IsFullScreen = isFullScreen;
+        //    graphics.ToggleFullScreen();
+        //}
+        public void ToggleFullScreen()
+        {
+            this.graphics.ToggleFullScreen();
+        }
+        public bool IsFullScreen() { return this.graphics.IsFullScreen; }
     }
 }

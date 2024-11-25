@@ -98,6 +98,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Content Include="icon.ico" />
     <Content Include="worlds\world001.txt">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
@@ -335,10 +336,10 @@
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="icon.ico">
-      <LogicalName>icon.ico</LogicalName>
+      <LogicalName>Icon.ico</LogicalName>
     </EmbeddedResource>
     <EmbeddedResource Include="icon.bmp">
-      <LogicalName>icon.bmp</LogicalName>
+      <LogicalName>Icon.bmp</LogicalName>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
