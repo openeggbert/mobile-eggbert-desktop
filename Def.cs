@@ -2,7 +2,6 @@
 // WindowsPhoneSpeedyBlupi.Def
 
 
-using System.Diagnostics;
 
 namespace WindowsPhoneSpeedyBlupi
 {

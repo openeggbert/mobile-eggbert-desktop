@@ -298,7 +298,7 @@ namespace WindowsPhoneSpeedyBlupi
                     return;
                 case Def.ButtonGlygh.InitBuy:
                 case Def.ButtonGlygh.TrialBuy:
-                    Guide.ShowMarketplace(PlayerIndex.One);
+                    Guide.Show(PlayerIndex.One);
                     SetPhase(Def.Phase.Init);
                     return;
                 case Def.ButtonGlygh.InitRanking:
