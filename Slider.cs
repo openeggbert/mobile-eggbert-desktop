@@ -1,12 +1,16 @@
 ﻿// WindowsPhoneSpeedyBlupi, Version=1.0.0.5, Culture=neutral, PublicKeyToken=6db12cd62dbec439
 // WindowsPhoneSpeedyBlupi.Slider
 using System;
-using WindowsPhoneSpeedyBlupi;
 
 namespace WindowsPhoneSpeedyBlupi
 {
     public class Slider
     {
+        public Slider(TinyPoint topLeftCorner, double value) { 
+            TopLeftCorner = topLeftCorner;
+            value = Value;
+            
+        }
         public TinyPoint TopLeftCorner { get; set; }
 
         public double Value { get; set; }

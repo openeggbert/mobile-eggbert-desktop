@@ -126,87 +126,87 @@ namespace WindowsPhoneSpeedyBlupi
             hotSpotY = y;
         }
 
-        public void DrawInputButton(TinyRect rect, Def.ButtonGlygh glyph, bool pressed, bool selected)
+        public void DrawInputButton(TinyRect rect, Def.ButtonGlyph glyph, bool pressed, bool selected)
         {
             switch (glyph)
             {
-                case Def.ButtonGlygh.InitGamerA:
+                case Def.ButtonGlyph.InitGamerA:
                     DrawIcon(14, selected ? 16 : 4, rect, pressed ? 0.8 : 1.0, false);
                     break;
-                case Def.ButtonGlygh.InitGamerB:
+                case Def.ButtonGlyph.InitGamerB:
                     DrawIcon(14, selected ? 17 : 5, rect, pressed ? 0.8 : 1.0, false);
                     break;
-                case Def.ButtonGlygh.InitGamerC:
+                case Def.ButtonGlyph.InitGamerC:
                     DrawIcon(14, selected ? 18 : 6, rect, pressed ? 0.8 : 1.0, false);
                     break;
-                case Def.ButtonGlygh.InitSetup:
-                case Def.ButtonGlygh.PauseSetup:
+                case Def.ButtonGlyph.InitSetup:
+                case Def.ButtonGlyph.PauseSetup:
                     DrawIcon(14, 19, rect, pressed ? 0.8 : 1.0, false);
                     break;
-                case Def.ButtonGlygh.InitPlay:
+                case Def.ButtonGlyph.InitPlay:
                     DrawIcon(14, 7, rect, pressed ? 0.8 : 1.0, false);
                     break;
-                case Def.ButtonGlygh.PauseMenu:
-                case Def.ButtonGlygh.ResumeMenu:
+                case Def.ButtonGlyph.PauseMenu:
+                case Def.ButtonGlyph.ResumeMenu:
                     DrawIcon(14, 11, rect, pressed ? 0.8 : 1.0, false);
                     break;
-                case Def.ButtonGlygh.PauseBack:
+                case Def.ButtonGlyph.PauseBack:
                     DrawIcon(14, 8, rect, pressed ? 0.8 : 1.0, false);
                     break;
-                case Def.ButtonGlygh.PauseRestart:
+                case Def.ButtonGlyph.PauseRestart:
                     DrawIcon(14, 9, rect, pressed ? 0.8 : 1.0, false);
                     break;
-                case Def.ButtonGlygh.PauseContinue:
-                case Def.ButtonGlygh.ResumeContinue:
+                case Def.ButtonGlyph.PauseContinue:
+                case Def.ButtonGlyph.ResumeContinue:
                     DrawIcon(14, 10, rect, pressed ? 0.8 : 1.0, false);
                     break;
-                case Def.ButtonGlygh.WinLostReturn:
+                case Def.ButtonGlyph.WinLostReturn:
                     DrawIcon(14, 3, rect, pressed ? 0.8 : 1.0, false);
                     break;
-                case Def.ButtonGlygh.InitBuy:
-                case Def.ButtonGlygh.TrialBuy:
+                case Def.ButtonGlyph.InitBuy:
+                case Def.ButtonGlyph.TrialBuy:
                     DrawIcon(14, 22, rect, pressed ? 0.8 : 1.0, false);
                     break;
-                case Def.ButtonGlygh.InitRanking:
+                case Def.ButtonGlyph.InitRanking:
                     DrawIcon(14, 12, rect, pressed ? 0.8 : 1.0, false);
                     break;
-                case Def.ButtonGlygh.TrialCancel:
-                case Def.ButtonGlygh.RankingContinue:
+                case Def.ButtonGlyph.TrialCancel:
+                case Def.ButtonGlyph.RankingContinue:
                     DrawIcon(14, 8, rect, pressed ? 0.8 : 1.0, false);
                     break;
-                case Def.ButtonGlygh.SetupSounds:
-                case Def.ButtonGlygh.SetupJump:
-                case Def.ButtonGlygh.SetupZoom:
-                case Def.ButtonGlygh.SetupAccel:
+                case Def.ButtonGlyph.SetupSounds:
+                case Def.ButtonGlyph.SetupJump:
+                case Def.ButtonGlyph.SetupZoom:
+                case Def.ButtonGlyph.SetupAccel:
                     DrawIcon(14, selected ? 13 : 21, rect, pressed ? 0.8 : 1.0, false);
                     break;
-                case Def.ButtonGlygh.SetupReset:
+                case Def.ButtonGlyph.SetupReset:
                     DrawIcon(14, 20, rect, pressed ? 0.8 : 1.0, false);
                     break;
-                case Def.ButtonGlygh.SetupReturn:
+                case Def.ButtonGlyph.SetupReturn:
                     DrawIcon(14, 8, rect, pressed ? 0.8 : 1.0, false);
                     break;
-                case Def.ButtonGlygh.PlayJump:
+                case Def.ButtonGlyph.PlayJump:
                     DrawIcon(14, 2, rect, pressed ? 0.6 : 1.0, false);
                     break;
-                case Def.ButtonGlygh.PlayAction:
+                case Def.ButtonGlyph.PlayAction:
                     DrawIcon(14, 12, rect, pressed ? 0.6 : 1.0, false);
                     break;
-                case Def.ButtonGlygh.PlayDown:
+                case Def.ButtonGlyph.PlayDown:
                     DrawIcon(14, 23, rect, pressed ? 0.6 : 1.0, false);
                     break;
-                case Def.ButtonGlygh.PlayPause:
+                case Def.ButtonGlyph.PlayPause:
                     DrawIcon(14, 3, rect, pressed ? 0.6 : 1.0, false);
                     break;
-                case Def.ButtonGlygh.Cheat1:
-                case Def.ButtonGlygh.Cheat2:
-                case Def.ButtonGlygh.Cheat3:
-                case Def.ButtonGlygh.Cheat4:
-                case Def.ButtonGlygh.Cheat5:
-                case Def.ButtonGlygh.Cheat6:
-                case Def.ButtonGlygh.Cheat7:
-                case Def.ButtonGlygh.Cheat8:
-                case Def.ButtonGlygh.Cheat9:
+                case Def.ButtonGlyph.Cheat1:
+                case Def.ButtonGlyph.Cheat2:
+                case Def.ButtonGlyph.Cheat3:
+                case Def.ButtonGlyph.Cheat4:
+                case Def.ButtonGlyph.Cheat5:
+                case Def.ButtonGlyph.Cheat6:
+                case Def.ButtonGlyph.Cheat7:
+                case Def.ButtonGlyph.Cheat8:
+                case Def.ButtonGlyph.Cheat9:
                     {
                         DrawIcon(14, 0, rect, pressed ? 0.6 : 1.0, false);
                         TinyPoint tinyPoint = default(TinyPoint);
@@ -216,12 +216,12 @@ namespace WindowsPhoneSpeedyBlupi
                         Text.DrawTextCenter(this, pos, Decor.GetCheatTinyText(glyph), 1.0);
                         break;
                     }
-                case Def.ButtonGlygh.Cheat11:
-                case Def.ButtonGlygh.Cheat12:
-                case Def.ButtonGlygh.Cheat21:
-                case Def.ButtonGlygh.Cheat22:
-                case Def.ButtonGlygh.Cheat31:
-                case Def.ButtonGlygh.Cheat32:
+                case Def.ButtonGlyph.Cheat11:
+                case Def.ButtonGlyph.Cheat12:
+                case Def.ButtonGlyph.Cheat21:
+                case Def.ButtonGlyph.Cheat22:
+                case Def.ButtonGlyph.Cheat31:
+                case Def.ButtonGlyph.Cheat32:
                     break;
             }
         }

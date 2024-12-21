@@ -342,7 +342,7 @@ namespace WindowsPhoneSpeedyBlupi
             }
         }
 
-        public Def.ButtonGlygh ButtonPressed { get; set; }
+        public Def.ButtonGlyph ButtonPressed { get; set; }
 
         private static void MoveObjectCopy(ref MoveObject dst, MoveObject src)
         {
@@ -1598,27 +1598,27 @@ namespace WindowsPhoneSpeedyBlupi
             gameData.SetDoors(m_doors);
         }
 
-        public static string GetCheatTinyText(Def.ButtonGlygh glyph)
+        public static string GetCheatTinyText(Def.ButtonGlyph glyph)
         {
             switch (glyph)
             {
-                case Def.ButtonGlygh.Cheat1:
+                case Def.ButtonGlyph.Cheat1:
                     return "D";
-                case Def.ButtonGlygh.Cheat2:
+                case Def.ButtonGlyph.Cheat2:
                     return "B";
-                case Def.ButtonGlygh.Cheat3:
+                case Def.ButtonGlyph.Cheat3:
                     return "S";
-                case Def.ButtonGlygh.Cheat4:
+                case Def.ButtonGlyph.Cheat4:
                     return "E";
-                case Def.ButtonGlygh.Cheat5:
+                case Def.ButtonGlyph.Cheat5:
                     return "R";
-                case Def.ButtonGlygh.Cheat6:
+                case Def.ButtonGlyph.Cheat6:
                     return "T";
-                case Def.ButtonGlygh.Cheat7:
+                case Def.ButtonGlyph.Cheat7:
                     return "C";
-                case Def.ButtonGlygh.Cheat8:
+                case Def.ButtonGlyph.Cheat8:
                     return "T";
-                case Def.ButtonGlygh.Cheat9:
+                case Def.ButtonGlyph.Cheat9:
                     return "G";
                 default:
                     return "";
@@ -3456,9 +3456,9 @@ namespace WindowsPhoneSpeedyBlupi
                     end.X += (int)m_blupiVitesseX;
                 }
                 MoveObjectPollution();
-                if (ButtonPressed == Def.ButtonGlygh.PlayAction && !flag2 && m_blupiTransport == -1)
+                if (ButtonPressed == Def.ButtonGlyph.PlayAction && !flag2 && m_blupiTransport == -1)
                 {
-                    ButtonPressed = Def.ButtonGlygh.None;
+                    ButtonPressed = Def.ButtonGlyph.None;
                     rect.Left = m_blupiPos.X + 20;
                     rect.Right = m_blupiPos.X + 22;
                     rect.Top = m_blupiPos.Y + 60 - 2;
@@ -3577,9 +3577,9 @@ namespace WindowsPhoneSpeedyBlupi
                 }
                 end.X += (int)m_blupiVitesseX;
                 MoveObjectPollution();
-                if (ButtonPressed == Def.ButtonGlygh.PlayAction && !flag2 && m_blupiTransport == -1)
+                if (ButtonPressed == Def.ButtonGlyph.PlayAction && !flag2 && m_blupiTransport == -1)
                 {
-                    ButtonPressed = Def.ButtonGlygh.None;
+                    ButtonPressed = Def.ButtonGlyph.None;
                     rect.Left = m_blupiPos.X + 20;
                     rect.Right = m_blupiPos.X + 22;
                     rect.Top = m_blupiPos.Y + 60 - 2;
@@ -3861,9 +3861,9 @@ namespace WindowsPhoneSpeedyBlupi
                 }
                 m_blupiOffsetY = Math.Abs(m_blupiRealRotation / 2);
                 MoveObjectPollution();
-                if (ButtonPressed == Def.ButtonGlygh.PlayAction && !flag2 && m_blupiTransport == -1)
+                if (ButtonPressed == Def.ButtonGlyph.PlayAction && !flag2 && m_blupiTransport == -1)
                 {
-                    ButtonPressed = Def.ButtonGlygh.None;
+                    ButtonPressed = Def.ButtonGlyph.None;
                     celSwitch.X = m_blupiPos.X;
                     celSwitch.Y = m_blupiPos.Y - BLUPIFLOOR;
                     ObjectStart(celSwitch, 19, 0);
@@ -3993,9 +3993,9 @@ namespace WindowsPhoneSpeedyBlupi
                 }
                 end.X += (int)m_blupiVitesseX;
                 MoveObjectPollution();
-                if (ButtonPressed == Def.ButtonGlygh.PlayAction && !flag2 && m_blupiTransport == -1)
+                if (ButtonPressed == Def.ButtonGlyph.PlayAction && !flag2 && m_blupiTransport == -1)
                 {
-                    ButtonPressed = Def.ButtonGlygh.None;
+                    ButtonPressed = Def.ButtonGlyph.None;
                     celSwitch.X = m_blupiPos.X;
                     celSwitch.Y = m_blupiPos.Y;
                     ObjectStart(celSwitch, 28, 0);
@@ -4055,9 +4055,9 @@ namespace WindowsPhoneSpeedyBlupi
                     m_blupiVitesseX = 0.0;
                 }
                 end.X += (int)m_blupiVitesseX;
-                if (ButtonPressed == Def.ButtonGlygh.PlayAction && !flag2 && !m_blupiAir && m_blupiTransport == -1 && m_blupiVitesseX < 8.0)
+                if (ButtonPressed == Def.ButtonGlyph.PlayAction && !flag2 && !m_blupiAir && m_blupiTransport == -1 && m_blupiVitesseX < 8.0)
                 {
-                    ButtonPressed = Def.ButtonGlygh.None;
+                    ButtonPressed = Def.ButtonGlyph.None;
                     m_blupiSkate = false;
                     m_blupiAction = 43;
                     m_blupiPhase = 0;
@@ -4346,11 +4346,11 @@ namespace WindowsPhoneSpeedyBlupi
                     PlaySound(35, end);
                 }
             }
-            if (ButtonPressed == Def.ButtonGlygh.PlayAction && !m_blupiHelico && !m_blupiOver && !m_blupiBalloon && !m_blupiEcrase && !m_blupiTank && !m_blupiJeep && !m_blupiSkate && !flag2 && m_blupiTransport == -1 && m_blupiFocus)
+            if (ButtonPressed == Def.ButtonGlyph.PlayAction && !m_blupiHelico && !m_blupiOver && !m_blupiBalloon && !m_blupiEcrase && !m_blupiTank && !m_blupiJeep && !m_blupiSkate && !flag2 && m_blupiTransport == -1 && m_blupiFocus)
             {
                 if (m_blupiDynamite > 0)
                 {
-                    ButtonPressed = Def.ButtonGlygh.None;
+                    ButtonPressed = Def.ButtonGlyph.None;
                     rect.Left = end.X + 18;
                     rect.Right = end.X + 20;
                     rect.Top = end.Y + 60 - 2;
@@ -4372,7 +4372,7 @@ namespace WindowsPhoneSpeedyBlupi
                 }
                 else if (m_blupiPerso > 0)
                 {
-                    ButtonPressed = Def.ButtonGlygh.None;
+                    ButtonPressed = Def.ButtonGlyph.None;
                     icon = MoveObjectDetect(end, out bNear);
                     if (icon == -1 || m_moveObject[icon].type != 200)
                     {
@@ -5063,9 +5063,9 @@ namespace WindowsPhoneSpeedyBlupi
                     m_blupiRestart = true;
                     m_blupiAir = true;
                 }
-                if (ButtonPressed == Def.ButtonGlygh.PlayAction && (num26 == -1 || !bNear) && IsSwitch(m_blupiPos, ref celSwitch) && !m_blupiOver && !m_blupiBalloon && !m_blupiJeep && !m_blupiTank && !m_blupiSkate && !m_blupiShield && !m_blupiHide && !m_bSuperBlupi && m_blupiFocus)
+                if (ButtonPressed == Def.ButtonGlyph.PlayAction && (num26 == -1 || !bNear) && IsSwitch(m_blupiPos, ref celSwitch) && !m_blupiOver && !m_blupiBalloon && !m_blupiJeep && !m_blupiTank && !m_blupiSkate && !m_blupiShield && !m_blupiHide && !m_bSuperBlupi && m_blupiFocus)
                 {
-                    ButtonPressed = Def.ButtonGlygh.None;
+                    ButtonPressed = Def.ButtonGlyph.None;
                     ActiveSwitch(m_decor[celSwitch.X, celSwitch.Y].icon == 385, celSwitch);
                     m_blupiAction = 82;
                     m_blupiPhase = 0;
@@ -5173,9 +5173,9 @@ namespace WindowsPhoneSpeedyBlupi
             }
             if (icon != -1 && bNear)
             {
-                if (m_moveObject[icon].type == 13 && (ButtonPressed == Def.ButtonGlygh.PlayAction || IsFloatingObject(icon)) && !m_blupiHelico && !m_blupiOver && !m_blupiBalloon && !m_blupiEcrase && !m_blupiJeep && !m_blupiTank && !m_blupiSkate && !m_blupiNage && !m_blupiSurf && !m_blupiSuspend && m_blupiFocus)
+                if (m_moveObject[icon].type == 13 && (ButtonPressed == Def.ButtonGlyph.PlayAction || IsFloatingObject(icon)) && !m_blupiHelico && !m_blupiOver && !m_blupiBalloon && !m_blupiEcrase && !m_blupiJeep && !m_blupiTank && !m_blupiSkate && !m_blupiNage && !m_blupiSurf && !m_blupiSuspend && m_blupiFocus)
                 {
-                    ButtonPressed = Def.ButtonGlygh.None;
+                    ButtonPressed = Def.ButtonGlyph.None;
                     ObjectDelete(m_moveObject[icon].posCurrent, m_moveObject[icon].type);
                     m_scrollAdd.X = 0;
                     m_scrollAdd.Y = 0;
@@ -5190,9 +5190,9 @@ namespace WindowsPhoneSpeedyBlupi
                         m_jauges[1].SetHide(true);
                     }
                 }
-                if (ButtonPressed == Def.ButtonGlygh.PlayAction && m_moveObject[icon].type == 46 && !m_blupiHelico && !m_blupiOver && !m_blupiBalloon && !m_blupiEcrase && !m_blupiJeep && !m_blupiTank && !m_blupiSkate && !m_blupiNage && !m_blupiSurf && !m_blupiSuspend && m_blupiFocus)
+                if (ButtonPressed == Def.ButtonGlyph.PlayAction && m_moveObject[icon].type == 46 && !m_blupiHelico && !m_blupiOver && !m_blupiBalloon && !m_blupiEcrase && !m_blupiJeep && !m_blupiTank && !m_blupiSkate && !m_blupiNage && !m_blupiSurf && !m_blupiSuspend && m_blupiFocus)
                 {
-                    ButtonPressed = Def.ButtonGlygh.None;
+                    ButtonPressed = Def.ButtonGlyph.None;
                     ObjectDelete(m_moveObject[icon].posCurrent, m_moveObject[icon].type);
                     m_scrollAdd.X = 0;
                     m_scrollAdd.Y = 0;
@@ -5206,9 +5206,9 @@ namespace WindowsPhoneSpeedyBlupi
                         m_jauges[1].SetHide(true);
                     }
                 }
-                if (ButtonPressed == Def.ButtonGlygh.PlayAction && m_moveObject[icon].type == 19 && !m_blupiHelico && !m_blupiOver && !m_blupiBalloon && !m_blupiEcrase && !m_blupiJeep && !m_blupiTank && !m_blupiSkate && !m_blupiNage && !m_blupiSurf && !m_blupiSuspend && m_blupiFocus)
+                if (ButtonPressed == Def.ButtonGlyph.PlayAction && m_moveObject[icon].type == 19 && !m_blupiHelico && !m_blupiOver && !m_blupiBalloon && !m_blupiEcrase && !m_blupiJeep && !m_blupiTank && !m_blupiSkate && !m_blupiNage && !m_blupiSurf && !m_blupiSuspend && m_blupiFocus)
                 {
-                    ButtonPressed = Def.ButtonGlygh.None;
+                    ButtonPressed = Def.ButtonGlyph.None;
                     ObjectDelete(m_moveObject[icon].posCurrent, m_moveObject[icon].type);
                     m_scrollAdd.X = 0;
                     m_scrollAdd.Y = 0;
@@ -5224,9 +5224,9 @@ namespace WindowsPhoneSpeedyBlupi
                         m_jauges[1].SetHide(true);
                     }
                 }
-                if (ButtonPressed == Def.ButtonGlygh.PlayAction && m_moveObject[icon].type == 28 && !m_blupiHelico && !m_blupiOver && !m_blupiBalloon && !m_blupiEcrase && !m_blupiJeep && !m_blupiTank && !m_blupiSkate && !m_blupiNage && !m_blupiSurf && !m_blupiSuspend && m_blupiFocus)
+                if (ButtonPressed == Def.ButtonGlyph.PlayAction && m_moveObject[icon].type == 28 && !m_blupiHelico && !m_blupiOver && !m_blupiBalloon && !m_blupiEcrase && !m_blupiJeep && !m_blupiTank && !m_blupiSkate && !m_blupiNage && !m_blupiSurf && !m_blupiSuspend && m_blupiFocus)
                 {
-                    ButtonPressed = Def.ButtonGlygh.None;
+                    ButtonPressed = Def.ButtonGlyph.None;
                     ObjectDelete(m_moveObject[icon].posCurrent, m_moveObject[icon].type);
                     m_scrollAdd.X = 0;
                     m_scrollAdd.Y = 0;
@@ -5256,9 +5256,9 @@ namespace WindowsPhoneSpeedyBlupi
                         m_blupiBullet = 10;
                     }
                 }
-                if (ButtonPressed == Def.ButtonGlygh.PlayAction && m_moveObject[icon].type == 24 && !m_blupiHelico && !m_blupiOver && !m_blupiBalloon && !m_blupiEcrase && !m_blupiJeep && !m_blupiTank && !m_blupiSkate && !m_blupiNage && !m_blupiSurf && !m_blupiSuspend && m_blupiFocus)
+                if (ButtonPressed == Def.ButtonGlyph.PlayAction && m_moveObject[icon].type == 24 && !m_blupiHelico && !m_blupiOver && !m_blupiBalloon && !m_blupiEcrase && !m_blupiJeep && !m_blupiTank && !m_blupiSkate && !m_blupiNage && !m_blupiSurf && !m_blupiSuspend && m_blupiFocus)
                 {
-                    ButtonPressed = Def.ButtonGlygh.None;
+                    ButtonPressed = Def.ButtonGlyph.None;
                     m_scrollAdd.X = 0;
                     m_scrollAdd.Y = 0;
                     m_blupiAction = 42;
@@ -5518,9 +5518,9 @@ namespace WindowsPhoneSpeedyBlupi
                     m_blupiPosMagic = m_blupiPos;
                     m_jauges[1].SetHide(false);
                 }
-                if (ButtonPressed == Def.ButtonGlygh.PlayAction && m_moveObject[icon].type == 26 && !m_blupiShield && !m_blupiHelico && !m_blupiOver && !m_blupiBalloon && !m_blupiEcrase && !m_blupiJeep && !m_blupiTank && !m_blupiSkate && m_blupiFocus)
+                if (ButtonPressed == Def.ButtonGlyph.PlayAction && m_moveObject[icon].type == 26 && !m_blupiShield && !m_blupiHelico && !m_blupiOver && !m_blupiBalloon && !m_blupiEcrase && !m_blupiJeep && !m_blupiTank && !m_blupiSkate && m_blupiFocus)
                 {
-                    ButtonPressed = Def.ButtonGlygh.None;
+                    ButtonPressed = Def.ButtonGlyph.None;
                     m_sucettePos = m_moveObject[icon].posCurrent;
                     m_sucetteType = m_moveObject[icon].type;
                     ObjectDelete(m_moveObject[icon].posCurrent, m_moveObject[icon].type);
@@ -5544,9 +5544,9 @@ namespace WindowsPhoneSpeedyBlupi
                     ObjectStart(m_blupiPos, 41, 10);
                     ObjectStart(m_blupiPos, 41, -10);
                 }
-                if (ButtonPressed == Def.ButtonGlygh.PlayAction && m_moveObject[icon].type == 30 && !m_blupiShield && !m_blupiCloud && !m_blupiHelico && !m_blupiOver && !m_blupiBalloon && !m_blupiEcrase && !m_blupiJeep && !m_blupiTank && !m_blupiSkate && m_blupiFocus)
+                if (ButtonPressed == Def.ButtonGlyph.PlayAction && m_moveObject[icon].type == 30 && !m_blupiShield && !m_blupiCloud && !m_blupiHelico && !m_blupiOver && !m_blupiBalloon && !m_blupiEcrase && !m_blupiJeep && !m_blupiTank && !m_blupiSkate && m_blupiFocus)
                 {
-                    ButtonPressed = Def.ButtonGlygh.None;
+                    ButtonPressed = Def.ButtonGlyph.None;
                     m_sucettePos = m_moveObject[icon].posCurrent;
                     m_sucetteType = m_moveObject[icon].type;
                     ObjectDelete(m_moveObject[icon].posCurrent, m_moveObject[icon].type);
@@ -5579,9 +5579,9 @@ namespace WindowsPhoneSpeedyBlupi
                 {
                     if (m_moveObject[icon].type == 200)
                     {
-                        if (m_blupiPerso < 5 && ButtonPressed == Def.ButtonGlygh.PlayAction)
+                        if (m_blupiPerso < 5 && ButtonPressed == Def.ButtonGlyph.PlayAction)
                         {
-                            ButtonPressed = Def.ButtonGlygh.None;
+                            ButtonPressed = Def.ButtonGlyph.None;
                             ObjectDelete(m_moveObject[icon].posCurrent, m_moveObject[icon].type);
                             celSwitch.X = m_moveObject[icon].posCurrent.X - m_posDecor.X;
                             celSwitch.Y = m_moveObject[icon].posCurrent.Y - m_posDecor.Y;
@@ -5603,9 +5603,9 @@ namespace WindowsPhoneSpeedyBlupi
                         m_decorPhase = 0;
                     }
                 }
-                if (m_moveObject[icon].type == 55 && m_blupiFocus && m_blupiDynamite == 0 && (m_voyageIcon != 252 || m_voyageChannel != 10) && ButtonPressed == Def.ButtonGlygh.PlayAction)
+                if (m_moveObject[icon].type == 55 && m_blupiFocus && m_blupiDynamite == 0 && (m_voyageIcon != 252 || m_voyageChannel != 10) && ButtonPressed == Def.ButtonGlyph.PlayAction)
                 {
-                    ButtonPressed = Def.ButtonGlygh.None;
+                    ButtonPressed = Def.ButtonGlyph.None;
                     ObjectDelete(m_moveObject[icon].posCurrent, m_moveObject[icon].type);
                     celSwitch.X = m_moveObject[icon].posCurrent.X - m_posDecor.X;
                     celSwitch.Y = m_moveObject[icon].posCurrent.Y - m_posDecor.Y;
@@ -5849,7 +5849,7 @@ namespace WindowsPhoneSpeedyBlupi
                 m_blupiPhase = 0;
                 m_blupiFocus = true;
             }
-            if (ButtonPressed == Def.ButtonGlygh.PlayAction && m_blupiAction == 1)
+            if (ButtonPressed == Def.ButtonGlyph.PlayAction && m_blupiAction == 1)
             {
                 m_blupiAction = 84;
                 m_blupiPhase = 0;

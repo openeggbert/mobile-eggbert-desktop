@@ -4,7 +4,7 @@ namespace Microsoft.Xna.Framework.GamerServices
 {
     public static class Guide
     {
-        public static void ShowMarketplace(PlayerIndex playerIndex)
+        public static void Show(PlayerIndex playerIndex)
         {
             Debug.Write("The Market Place should now be shown.");
         }

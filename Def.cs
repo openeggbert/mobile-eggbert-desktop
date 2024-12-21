@@ -3,6 +3,8 @@
 
 
 
+using Microsoft.Xna.Framework.Input;
+
 namespace WindowsPhoneSpeedyBlupi
 {
 
@@ -37,7 +39,7 @@ namespace WindowsPhoneSpeedyBlupi
             Ranking
         }
 
-        public enum ButtonGlygh
+        public enum ButtonGlyph
         {
             None,
             InitGamerA,
@@ -83,11 +85,6 @@ namespace WindowsPhoneSpeedyBlupi
             Cheat7,
             Cheat8,
             Cheat9
-        }
-
-        public enum KeyboardPress
-        {
-            None = 0, Up = 1, Right = 2, Down = 3, Left = 4, LeftControl = 5, Space = 6, Escape = 7, Pause = 8
         }
 
         public const int LXIMAGE = 640;
