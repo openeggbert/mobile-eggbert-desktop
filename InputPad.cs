@@ -292,7 +292,7 @@ namespace WindowsPhoneSpeedyBlupi
             float screenHeight = game1.getGraphics().GraphicsDevice.Viewport.Height;
             float screenRatio = screenWidth / screenHeight;
 
-            if (Def.PLATFORM == Platform.Android &&screenRatio < 1.3333333333333333)
+            if (Def.PLATFORM == Platform.Android &&screenRatio > 1.3333333333333333)
             {
                 for (int i = 0; i < touchesOrClicks.Count; i++)
                 {
