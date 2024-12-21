@@ -503,10 +503,10 @@ namespace WindowsPhoneSpeedyBlupi
                 {
                     num = (1.0 - num) * (1.0 - num);
                     TinyRect tinyRect = default(TinyRect);
-                    tinyRect.Left = (int)(720.0 - 640.0 * num);
-                    tinyRect.Right = (int)(1360.0 - 640.0 * num);
-                    tinyRect.Top = 0;
-                    tinyRect.Bottom = 160;
+                    tinyRect.LeftX = (int)(720.0 - 640.0 * num);
+                    tinyRect.RightX = (int)(1360.0 - 640.0 * num);
+                    tinyRect.TopY = 0;
+                    tinyRect.BottomY = 160;
                     rect = tinyRect;
                     opacity = num * num;
                 }
@@ -514,10 +514,10 @@ namespace WindowsPhoneSpeedyBlupi
                 {
                     num = ((fadeOutPhase != 0) ? (1.0 - num * 2.0) : (1.0 - (1.0 - num) * (1.0 - num)));
                     TinyRect tinyRect2 = default(TinyRect);
-                    tinyRect2.Left = 80;
-                    tinyRect2.Right = 720;
-                    tinyRect2.Top = (int)(-160.0 + num * 160.0);
-                    tinyRect2.Bottom = (int)(0.0 + num * 160.0);
+                    tinyRect2.LeftX = 80;
+                    tinyRect2.RightX = 720;
+                    tinyRect2.TopY = (int)(-160.0 + num * 160.0);
+                    tinyRect2.BottomY = (int)(0.0 + num * 160.0);
                     rect = tinyRect2;
                     opacity = 1.0;
                 }
@@ -543,10 +543,10 @@ namespace WindowsPhoneSpeedyBlupi
                     num = 1.0 + num * 10.0;
                 }
                 TinyRect tinyRect3 = default(TinyRect);
-                tinyRect3.Left = (int)(468.0 - 205.0 * num);
-                tinyRect3.Right = (int)(468.0 + 205.0 * num);
-                tinyRect3.Top = (int)(280.0 - 190.0 * num);
-                tinyRect3.Bottom = (int)(280.0 + 190.0 * num);
+                tinyRect3.LeftX = (int)(468.0 - 205.0 * num);
+                tinyRect3.RightX = (int)(468.0 + 205.0 * num);
+                tinyRect3.TopY = (int)(280.0 - 190.0 * num);
+                tinyRect3.BottomY = (int)(280.0 + 190.0 * num);
                 TinyRect rect = tinyRect3;
                 pixmap.DrawIcon(16, 0, rect, opacity, 0.0, false);
             }
@@ -558,10 +558,10 @@ namespace WindowsPhoneSpeedyBlupi
                     double opacity = 1.0 - num;
                     num = 1.0 + num * 10.0;
                     TinyRect tinyRect4 = default(TinyRect);
-                    tinyRect4.Left = (int)(418.0 - 205.0 * num);
-                    tinyRect4.Right = (int)(418.0 + 205.0 * num);
-                    tinyRect4.Top = (int)(190.0 - 190.0 * num);
-                    tinyRect4.Bottom = (int)(190.0 + 190.0 * num);
+                    tinyRect4.LeftX = (int)(418.0 - 205.0 * num);
+                    tinyRect4.RightX = (int)(418.0 + 205.0 * num);
+                    tinyRect4.TopY = (int)(190.0 - 190.0 * num);
+                    tinyRect4.BottomY = (int)(190.0 + 190.0 * num);
                     TinyRect rect = tinyRect4;
                     pixmap.DrawIcon(16, 0, rect, opacity, 0.0, false);
                 }
@@ -570,10 +570,10 @@ namespace WindowsPhoneSpeedyBlupi
                     double num = Math.Min((double)phaseTime / 20.0, 1.0);
                     num *= num;
                     TinyRect tinyRect5 = default(TinyRect);
-                    tinyRect5.Left = (int)(213.0 + 800.0 * num);
-                    tinyRect5.Right = (int)(623.0 + 800.0 * num);
-                    tinyRect5.Top = 0;
-                    tinyRect5.Bottom = 0;
+                    tinyRect5.LeftX = (int)(213.0 + 800.0 * num);
+                    tinyRect5.RightX = (int)(623.0 + 800.0 * num);
+                    tinyRect5.TopY = 0;
+                    tinyRect5.BottomY = 0;
                     TinyRect rect = tinyRect5;
                     pixmap.DrawIcon(16, 0, rect, 1.0, 0.0, false);
                 }
@@ -590,10 +590,10 @@ namespace WindowsPhoneSpeedyBlupi
                         num = 1.0 - num;
                     }
                     TinyRect tinyRect6 = default(TinyRect);
-                    tinyRect6.Left = (int)(418.0 - 205.0 * num);
-                    tinyRect6.Right = (int)(418.0 + 205.0 * num);
-                    tinyRect6.Top = (int)(190.0 - 190.0 * num);
-                    tinyRect6.Bottom = (int)(190.0 + 190.0 * num);
+                    tinyRect6.LeftX = (int)(418.0 - 205.0 * num);
+                    tinyRect6.RightX = (int)(418.0 + 205.0 * num);
+                    tinyRect6.TopY = (int)(190.0 - 190.0 * num);
+                    tinyRect6.BottomY = (int)(190.0 + 190.0 * num);
                     TinyRect rect = tinyRect6;
                     double rotation = 0.0;
                     if (num < 1.0)
@@ -626,23 +626,23 @@ namespace WindowsPhoneSpeedyBlupi
                     num2 = 1.0 - num2;
                 }
                 TinyRect tinyRect7 = default(TinyRect);
-                tinyRect7.Left = (int)(720.0 - 640.0 * num);
-                tinyRect7.Right = (int)(1360.0 - 640.0 * num);
-                tinyRect7.Top = 0;
-                tinyRect7.Bottom = 160;
+                tinyRect7.LeftX = (int)(720.0 - 640.0 * num);
+                tinyRect7.RightX = (int)(1360.0 - 640.0 * num);
+                tinyRect7.TopY = 0;
+                tinyRect7.BottomY = 160;
                 TinyRect rect = tinyRect7;
                 pixmap.DrawIcon(15, 0, rect, num * num, false);
                 TinyRect tinyRect8 = default(TinyRect);
-                tinyRect8.Left = 487;
-                tinyRect8.Right = 713;
-                tinyRect8.Top = 148;
-                tinyRect8.Bottom = 374;
+                tinyRect8.LeftX = 487;
+                tinyRect8.RightX = 713;
+                tinyRect8.TopY = 148;
+                tinyRect8.BottomY = 374;
                 TinyRect rect2 = tinyRect8;
                 TinyRect tinyRect9 = default(TinyRect);
-                tinyRect9.Left = 118;
-                tinyRect9.Right = 570;
-                tinyRect9.Top = 268;
-                tinyRect9.Bottom = 720;
+                tinyRect9.LeftX = 118;
+                tinyRect9.RightX = 570;
+                tinyRect9.TopY = 268;
+                tinyRect9.BottomY = 720;
                 TinyRect rect3 = tinyRect9;
                 double opacity = 0.5 - num * 0.4;
                 double rotation = (0.0 - num2) * 100.0 * 2.5;
@@ -653,10 +653,10 @@ namespace WindowsPhoneSpeedyBlupi
             {
                 double num = Math.Min((double)phaseTime / 100.0, 1.0);
                 TinyRect tinyRect10 = default(TinyRect);
-                tinyRect10.Left = (int)(418.0 - 205.0 * num);
-                tinyRect10.Right = (int)(418.0 + 205.0 * num);
-                tinyRect10.Top = (int)(238.0 - 190.0 * num);
-                tinyRect10.Bottom = (int)(238.0 + 190.0 * num);
+                tinyRect10.LeftX = (int)(418.0 - 205.0 * num);
+                tinyRect10.RightX = (int)(418.0 + 205.0 * num);
+                tinyRect10.TopY = (int)(238.0 - 190.0 * num);
+                tinyRect10.BottomY = (int)(238.0 + 190.0 * num);
                 TinyRect rect = tinyRect10;
                 double rotation = 0.0;
                 if (num < 1.0)
@@ -672,10 +672,10 @@ namespace WindowsPhoneSpeedyBlupi
             {
                 double num = Math.Sin((double)phaseTime / 3.0) / 2.0 + 1.0;
                 TinyRect tinyRect11 = default(TinyRect);
-                tinyRect11.Left = (int)(418.0 - 205.0 * num);
-                tinyRect11.Right = (int)(418.0 + 205.0 * num);
-                tinyRect11.Top = (int)(238.0 - 190.0 * num);
-                tinyRect11.Bottom = (int)(238.0 + 190.0 * num);
+                tinyRect11.LeftX = (int)(418.0 - 205.0 * num);
+                tinyRect11.RightX = (int)(418.0 + 205.0 * num);
+                tinyRect11.TopY = (int)(238.0 - 190.0 * num);
+                tinyRect11.BottomY = (int)(238.0 + 190.0 * num);
                 TinyRect rect = tinyRect11;
                 pixmap.DrawIcon(16, 0, rect, 1.0, 0.0, false);
             }
@@ -689,17 +689,17 @@ namespace WindowsPhoneSpeedyBlupi
                 int width = drawBounds.Width;
                 int height = drawBounds.Height;
                 TinyRect tinyRect = default(TinyRect);
-                tinyRect.Left = 10;
-                tinyRect.Right = 260;
-                tinyRect.Top = height - 325;
-                tinyRect.Bottom = height - 10;
+                tinyRect.LeftX = 10;
+                tinyRect.RightX = 260;
+                tinyRect.TopY = height - 325;
+                tinyRect.BottomY = height - 10;
                 TinyRect rect = tinyRect;
                 pixmap.DrawIcon(14, 15, rect, 0.3, false);
                 TinyRect tinyRect2 = default(TinyRect);
-                tinyRect2.Left = width - 170;
-                tinyRect2.Right = width - 10;
-                tinyRect2.Top = height - ((IsTrialMode || IsRankingMode) ? 325 : 195);
-                tinyRect2.Bottom = height - 10;
+                tinyRect2.LeftX = width - 170;
+                tinyRect2.RightX = width - 10;
+                tinyRect2.TopY = height - ((IsTrialMode || IsRankingMode) ? 325 : 195);
+                tinyRect2.BottomY = height - 10;
                 rect = tinyRect2;
                 pixmap.DrawIcon(14, 15, rect, 0.3, false);
             }
@@ -788,26 +788,26 @@ namespace WindowsPhoneSpeedyBlupi
             int secondaryDoors;
             gameData.GetGamerInfo(gamer, out nbVies, out mainDoors, out secondaryDoors);
             TinyPoint tinyPoint = default(TinyPoint);
-            tinyPoint.X = buttonRect.Right + 5 - pixmap.Origin.X;
-            tinyPoint.Y = buttonRect.Top + 3 - pixmap.Origin.Y;
+            tinyPoint.X = buttonRect.RightX + 5 - pixmap.Origin.X;
+            tinyPoint.Y = buttonRect.TopY + 3 - pixmap.Origin.Y;
             TinyPoint pos = tinyPoint;
             string text = string.Format(MyResource.LoadString(MyResource.TX_GAMER_TITLE), new string((char)(65 + gamer), 1));
             Text.DrawText(pixmap, pos, text, 0.7);
             TinyPoint tinyPoint2 = default(TinyPoint);
-            tinyPoint2.X = buttonRect.Right + 5 - pixmap.Origin.X;
-            tinyPoint2.Y = buttonRect.Top + 25 - pixmap.Origin.Y;
+            tinyPoint2.X = buttonRect.RightX + 5 - pixmap.Origin.X;
+            tinyPoint2.Y = buttonRect.TopY + 25 - pixmap.Origin.Y;
             pos = tinyPoint2;
             text = string.Format(MyResource.LoadString(MyResource.TX_GAMER_MDOORS), mainDoors);
             Text.DrawText(pixmap, pos, text, 0.45);
             TinyPoint tinyPoint3 = default(TinyPoint);
-            tinyPoint3.X = buttonRect.Right + 5 - pixmap.Origin.X;
-            tinyPoint3.Y = buttonRect.Top + 39 - pixmap.Origin.Y;
+            tinyPoint3.X = buttonRect.RightX + 5 - pixmap.Origin.X;
+            tinyPoint3.Y = buttonRect.TopY + 39 - pixmap.Origin.Y;
             pos = tinyPoint3;
             text = string.Format(MyResource.LoadString(MyResource.TX_GAMER_SDOORS), secondaryDoors);
             Text.DrawText(pixmap, pos, text, 0.45);
             TinyPoint tinyPoint4 = default(TinyPoint);
-            tinyPoint4.X = buttonRect.Right + 5 - pixmap.Origin.X;
-            tinyPoint4.Y = buttonRect.Top + 53 - pixmap.Origin.Y;
+            tinyPoint4.X = buttonRect.RightX + 5 - pixmap.Origin.X;
+            tinyPoint4.Y = buttonRect.TopY + 53 - pixmap.Origin.Y;
             pos = tinyPoint4;
             text = string.Format(MyResource.LoadString(MyResource.TX_GAMER_LIFES), nbVies);
             Text.DrawText(pixmap, pos, text, 0.45);
@@ -825,8 +825,8 @@ namespace WindowsPhoneSpeedyBlupi
             if (array.Length == 2)
             {
                 TinyPoint tinyPoint = default(TinyPoint);
-                tinyPoint.X = buttonRect.Right + 10 - pixmap.Origin.X;
-                tinyPoint.Y = (buttonRect.Top + buttonRect.Bottom) / 2 - 20 - pixmap.Origin.Y;
+                tinyPoint.X = buttonRect.RightX + 10 - pixmap.Origin.X;
+                tinyPoint.Y = (buttonRect.TopY + buttonRect.BottomY) / 2 - 20 - pixmap.Origin.Y;
                 TinyPoint pos = tinyPoint;
                 Text.DrawText(pixmap, pos, array[0], 0.7);
                 pos.Y += 24;
@@ -835,8 +835,8 @@ namespace WindowsPhoneSpeedyBlupi
             else
             {
                 TinyPoint tinyPoint2 = default(TinyPoint);
-                tinyPoint2.X = buttonRect.Right + 10 - pixmap.Origin.X;
-                tinyPoint2.Y = (buttonRect.Top + buttonRect.Bottom) / 2 - 8 - pixmap.Origin.Y;
+                tinyPoint2.X = buttonRect.RightX + 10 - pixmap.Origin.X;
+                tinyPoint2.Y = (buttonRect.TopY + buttonRect.BottomY) / 2 - 8 - pixmap.Origin.Y;
                 TinyPoint pos2 = tinyPoint2;
                 Text.DrawText(pixmap, pos2, text, 0.7);
             }
@@ -846,8 +846,8 @@ namespace WindowsPhoneSpeedyBlupi
         {
             TinyRect buttonRect = inputPad.GetButtonRect(glyph);
             TinyPoint tinyPoint = default(TinyPoint);
-            tinyPoint.X = (buttonRect.Left + buttonRect.Right) / 2 - pixmap.Origin.X;
-            tinyPoint.Y = buttonRect.Bottom + 2 - pixmap.Origin.Y;
+            tinyPoint.X = (buttonRect.LeftX + buttonRect.RightX) / 2 - pixmap.Origin.X;
+            tinyPoint.Y = buttonRect.BottomY + 2 - pixmap.Origin.Y;
             TinyPoint pos = tinyPoint;
             string text = MyResource.LoadString(res);
             Text.DrawTextCenter(pixmap, pos, text, 0.7);

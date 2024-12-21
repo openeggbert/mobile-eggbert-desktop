@@ -74,17 +74,17 @@ namespace WindowsPhoneSpeedyBlupi
             if (!m_bHide)
             {
                 int num = m_level * 114 / 100;
-                rect.Left = 0;
-                rect.Right = 124;
-                rect.Top = 0;
-                rect.Bottom = 22;
+                rect.LeftX = 0;
+                rect.RightX = 124;
+                rect.TopY = 0;
+                rect.BottomY = 22;
                 m_pixmap.DrawPart(5, m_pos, rect, m_zoom);
                 if (num > 0)
                 {
-                    rect.Left = 0;
-                    rect.Right = 6 + num;
-                    rect.Top = 22 * m_mode;
-                    rect.Bottom = 22 * (m_mode + 1);
+                    rect.LeftX = 0;
+                    rect.RightX = 6 + num;
+                    rect.TopY = 22 * m_mode;
+                    rect.BottomY = 22 * (m_mode + 1);
                     m_pixmap.DrawPart(5, m_pos, rect, m_zoom);
                 }
             }

@@ -77,47 +77,43 @@ namespace WindowsPhoneSpeedyBlupi
         public static TinyRect Inflate(TinyRect rect, int value)
         {
             TinyRect result = default(TinyRect);
-            result.Left = rect.Left - value;
-            result.Right = rect.Right + value;
-            result.Top = rect.Top - value;
-            result.Bottom = rect.Bottom + value;
+            result.LeftX = rect.LeftX - value;
+            result.RightX = rect.RightX + value;
+            result.TopY = rect.TopY - value;
+            result.BottomY = rect.BottomY + value;
             return result;
         }
 
         public static bool IsInside(TinyRect rect, TinyPoint p)
         {
-            if (p.X >= rect.Left && p.X <= rect.Right && p.Y >= rect.Top)
-            {
-                return p.Y <= rect.Bottom;
-            }
-            return false;
+            return p.X >= rect.LeftX && p.X <= rect.RightX && p.Y >= rect.TopY && p.Y <= rect.BottomY;
         }
 
         public static bool IntersectRect(out TinyRect dst, TinyRect src1, TinyRect src2)
         {
             dst = default(TinyRect);
-            dst.Left = Math.Max(src1.Left, src2.Left);
-            dst.Right = Math.Min(src1.Right, src2.Right);
-            dst.Top = Math.Max(src1.Top, src2.Top);
-            dst.Bottom = Math.Min(src1.Bottom, src2.Bottom);
+            dst.LeftX = Math.Max(src1.LeftX, src2.LeftX);
+            dst.RightX = Math.Min(src1.RightX, src2.RightX);
+            dst.TopY = Math.Max(src1.TopY, src2.TopY);
+            dst.BottomY = Math.Min(src1.BottomY, src2.BottomY);
             return !IsRectEmpty(dst);
         }
 
         public static bool UnionRect(out TinyRect dst, TinyRect src1, TinyRect src2)
         {
             dst = default(TinyRect);
-            dst.Left = Math.Min(src1.Left, src2.Left);
-            dst.Right = Math.Max(src1.Right, src2.Right);
-            dst.Top = Math.Min(src1.Top, src2.Top);
-            dst.Bottom = Math.Max(src1.Bottom, src2.Bottom);
+            dst.LeftX = Math.Min(src1.LeftX, src2.LeftX);
+            dst.RightX = Math.Max(src1.RightX, src2.RightX);
+            dst.TopY = Math.Min(src1.TopY, src2.TopY);
+            dst.BottomY = Math.Max(src1.BottomY, src2.BottomY);
             return !IsRectEmpty(dst);
         }
 
         private static bool IsRectEmpty(TinyRect rect)
         {
-            if (rect.Left < rect.Right)
+            if (rect.LeftX < rect.RightX)
             {
-                return rect.Top >= rect.Bottom;
+                return rect.TopY >= rect.BottomY;
             }
             return true;
         }

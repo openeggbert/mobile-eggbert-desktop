@@ -13,7 +13,7 @@ namespace WindowsPhoneSpeedyBlupi
 {
     public class InputPad
     {
-        private static readonly int padSize = 140;
+        private static readonly int padRadius = 140;
 
         private readonly Game1 game1;
 
@@ -314,32 +314,32 @@ namespace WindowsPhoneSpeedyBlupi
             Boolean keyPressedDown = false;
             Boolean keyPressedLeft = false;
             Boolean keyPressedRight = false;
-            foreach (TinyPoint touchOrClick in touchesOrClicks)
+            foreach (TinyPoint touchOrClickItem in touchesOrClicks)
             {
                 Boolean keyboardPressed = false;
-                if (touchOrClick.X == -1)
+                if (touchOrClickItem.X == -1)
                 {
                     keyboardPressed = true;
                 }
-                Keys keyPressed = keyboardPressed ? (Keys)touchOrClick.Y : Keys.None;
+                Keys keyPressed = keyboardPressed ? (Keys)touchOrClickItem.Y : Keys.None;
                 keyPressedUp = keyPressed == Keys.Up ? true : keyPressedUp;
                 keyPressedDown = keyPressed == Keys.Down ? true : keyPressedDown;
                 keyPressedLeft = keyPressed == Keys.Left ? true : keyPressedLeft;
                 keyPressedRight = keyPressed == Keys.Right ? true : keyPressedRight;
 
                 {
-                    TinyPoint tinyPoint2 = keyboardPressed ? new TinyPoint(1, 1) : touchOrClick;
-                    if (!accelStarted && Misc.IsInside(GetPadBounds(PadCenter, padSize), tinyPoint2))
+                    TinyPoint touchOrClick = keyboardPressed ? new TinyPoint(1, 1) : touchOrClickItem;
+                    if (!accelStarted && Misc.IsInside(GetPadBounds(PadCenter, padRadius), touchOrClick))
                     {
                         padPressed = true;
-                        padTouchPos = tinyPoint2;
+                        padTouchPos = touchOrClick;
                     }
-                    if (keyPressed == Keys.Up || keyPressed == Keys.Right || keyPressed == Keys.Down || keyPressed == Keys.Left)
+                    if (keyPressedUp || keyPressedDown || keyPressedLeft || keyPressedRight)
                     {
                         padPressed = true;
                     }
                     Debug.WriteLine("padPressed=" + padPressed);
-                    Def.ButtonGlyph buttonGlyph2 = ButtonDetect(tinyPoint2);
+                    Def.ButtonGlyph buttonGlyph2 = ButtonDetect(touchOrClick);
                     Debug.WriteLine("buttonGlyph2 =" + buttonGlyph2);
                     if (buttonGlyph2 != 0)
                     {
@@ -354,7 +354,7 @@ namespace WindowsPhoneSpeedyBlupi
                         }
                     }
 
-                    if ((Phase == Def.Phase.MainSetup || Phase == Def.Phase.PlaySetup) && accelSlider.Move(tinyPoint2))
+                    if ((Phase == Def.Phase.MainSetup || Phase == Def.Phase.PlaySetup) && accelSlider.Move(touchOrClick))
                     {
                         gameData.AccelSensitivity = accelSlider.Value;
                     }
@@ -508,19 +508,20 @@ namespace WindowsPhoneSpeedyBlupi
             decor.KeyChange(num3);
         }
 
-        private Def.ButtonGlyph ButtonDetect(TinyPoint pos)
+        private Def.ButtonGlyph ButtonDetect(TinyPoint touchOrClick)
         {
-            foreach (Def.ButtonGlyph item in ButtonGlyphs.Reverse())
+            foreach (Def.ButtonGlyph buttonGlyph in ButtonGlyphs.Reverse())
             {
-                int value = 0;
-                if (item == Def.ButtonGlyph.PlayJump || item == Def.ButtonGlyph.PlayAction || item == Def.ButtonGlyph.PlayDown || item == Def.ButtonGlyph.PlayPause)
+                TinyRect buttonRect = GetButtonRect(buttonGlyph);
+                
+                if (buttonGlyph == Def.ButtonGlyph.PlayJump || buttonGlyph == Def.ButtonGlyph.PlayAction || buttonGlyph == Def.ButtonGlyph.PlayDown || buttonGlyph == Def.ButtonGlyph.PlayPause)
                 {
-                    value = 20;
+                    buttonRect = Misc.Inflate(buttonRect, 20);
                 }
-                TinyRect rect = Misc.Inflate(GetButtonRect(item), value);
-                if (Misc.IsInside(rect, pos))
+                
+                if (Misc.IsInside(buttonRect, touchOrClick))
                 {
-                    return item;
+                    return buttonGlyph;
                 }
             }
             return Def.ButtonGlyph.None;
@@ -530,9 +531,9 @@ namespace WindowsPhoneSpeedyBlupi
         {
             if (!accelStarted && Phase == Def.Phase.Play)
             {
-                pixmap.DrawIcon(14, 0, GetPadBounds(PadCenter, padSize / 2), 1.0, false);
+                pixmap.DrawIcon(14, 0, GetPadBounds(PadCenter, padRadius / 2), 1.0, false);
                 TinyPoint center = (padPressed ? padTouchPos : PadCenter);
-                pixmap.DrawIcon(14, 1, GetPadBounds(center, padSize / 2), 1.0, false);
+                pixmap.DrawIcon(14, 1, GetPadBounds(center, padRadius / 2), 1.0, false);
             }
             foreach (Def.ButtonGlyph buttonGlyph in ButtonGlyphs)
             {
@@ -570,10 +571,10 @@ namespace WindowsPhoneSpeedyBlupi
         private TinyRect GetPadBounds(TinyPoint center, int radius)
         {
             TinyRect result = default(TinyRect);
-            result.Left = center.X - radius;
-            result.Right = center.X + radius;
-            result.Top = center.Y - radius;
-            result.Bottom = center.Y + radius;
+            result.LeftX = center.X - radius;
+            result.RightX = center.X + radius;
+            result.TopY = center.Y - radius;
+            result.BottomY = center.Y + radius;
             return result;
         }
 
@@ -589,10 +590,10 @@ namespace WindowsPhoneSpeedyBlupi
             {
                 int num6 = (int)(glyph - 35);
                 TinyRect result = default(TinyRect);
-                result.Left = 80 * num6;
-                result.Right = 80 * (num6 + 1);
-                result.Top = 0;
-                result.Bottom = 80;
+                result.LeftX = 80 * num6;
+                result.RightX = 80 * (num6 + 1);
+                result.TopY = 0;
+                result.BottomY = 80;
                 return result;
             }
             switch (glyph)
@@ -600,218 +601,218 @@ namespace WindowsPhoneSpeedyBlupi
                 case Def.ButtonGlyph.InitGamerA:
                     {
                         TinyRect result19 = default(TinyRect);
-                        result19.Left = (int)(20.0 + num4 * 0.0);
-                        result19.Right = (int)(20.0 + num4 * 0.5);
-                        result19.Top = (int)(num2 - 20.0 - num4 * 2.1);
-                        result19.Bottom = (int)(num2 - 20.0 - num4 * 1.6);
+                        result19.LeftX = (int)(20.0 + num4 * 0.0);
+                        result19.RightX = (int)(20.0 + num4 * 0.5);
+                        result19.TopY = (int)(num2 - 20.0 - num4 * 2.1);
+                        result19.BottomY = (int)(num2 - 20.0 - num4 * 1.6);
                         return result19;
                     }
                 case Def.ButtonGlyph.InitGamerB:
                     {
                         TinyRect result18 = default(TinyRect);
-                        result18.Left = (int)(20.0 + num4 * 0.0);
-                        result18.Right = (int)(20.0 + num4 * 0.5);
-                        result18.Top = (int)(num2 - 20.0 - num4 * 1.6);
-                        result18.Bottom = (int)(num2 - 20.0 - num4 * 1.1);
+                        result18.LeftX = (int)(20.0 + num4 * 0.0);
+                        result18.RightX = (int)(20.0 + num4 * 0.5);
+                        result18.TopY = (int)(num2 - 20.0 - num4 * 1.6);
+                        result18.BottomY = (int)(num2 - 20.0 - num4 * 1.1);
                         return result18;
                     }
                 case Def.ButtonGlyph.InitGamerC:
                     {
                         TinyRect result15 = default(TinyRect);
-                        result15.Left = (int)(20.0 + num4 * 0.0);
-                        result15.Right = (int)(20.0 + num4 * 0.5);
-                        result15.Top = (int)(num2 - 20.0 - num4 * 1.1);
-                        result15.Bottom = (int)(num2 - 20.0 - num4 * 0.6);
+                        result15.LeftX = (int)(20.0 + num4 * 0.0);
+                        result15.RightX = (int)(20.0 + num4 * 0.5);
+                        result15.TopY = (int)(num2 - 20.0 - num4 * 1.1);
+                        result15.BottomY = (int)(num2 - 20.0 - num4 * 0.6);
                         return result15;
                     }
                 case Def.ButtonGlyph.InitSetup:
                     {
                         TinyRect result14 = default(TinyRect);
-                        result14.Left = (int)(20.0 + num4 * 0.0);
-                        result14.Right = (int)(20.0 + num4 * 0.5);
-                        result14.Top = (int)(num2 - 20.0 - num4 * 0.5);
-                        result14.Bottom = (int)(num2 - 20.0 - num4 * 0.0);
+                        result14.LeftX = (int)(20.0 + num4 * 0.0);
+                        result14.RightX = (int)(20.0 + num4 * 0.5);
+                        result14.TopY = (int)(num2 - 20.0 - num4 * 0.5);
+                        result14.BottomY = (int)(num2 - 20.0 - num4 * 0.0);
                         return result14;
                     }
                 case Def.ButtonGlyph.InitPlay:
                     {
                         TinyRect result11 = default(TinyRect);
-                        result11.Left = (int)(num - 20.0 - num4 * 1.0);
-                        result11.Right = (int)(num - 20.0 - num4 * 0.0);
-                        result11.Top = (int)(num2 - 40.0 - num4 * 1.0);
-                        result11.Bottom = (int)(num2 - 40.0 - num4 * 0.0);
+                        result11.LeftX = (int)(num - 20.0 - num4 * 1.0);
+                        result11.RightX = (int)(num - 20.0 - num4 * 0.0);
+                        result11.TopY = (int)(num2 - 40.0 - num4 * 1.0);
+                        result11.BottomY = (int)(num2 - 40.0 - num4 * 0.0);
                         return result11;
                     }
                 case Def.ButtonGlyph.InitBuy:
                 case Def.ButtonGlyph.InitRanking:
                     {
                         TinyRect result10 = default(TinyRect);
-                        result10.Left = (int)(num - 20.0 - num4 * 0.75);
-                        result10.Right = (int)(num - 20.0 - num4 * 0.25);
-                        result10.Top = (int)(num2 - 20.0 - num4 * 2.1);
-                        result10.Bottom = (int)(num2 - 20.0 - num4 * 1.6);
+                        result10.LeftX = (int)(num - 20.0 - num4 * 0.75);
+                        result10.RightX = (int)(num - 20.0 - num4 * 0.25);
+                        result10.TopY = (int)(num2 - 20.0 - num4 * 2.1);
+                        result10.BottomY = (int)(num2 - 20.0 - num4 * 1.6);
                         return result10;
                     }
                 case Def.ButtonGlyph.PauseMenu:
                     {
                         TinyRect result37 = default(TinyRect);
-                        result37.Left = (int)((double)PixmapOrigin.X + num4 * -0.21);
-                        result37.Right = (int)((double)PixmapOrigin.X + num4 * 0.79);
-                        result37.Top = (int)((double)PixmapOrigin.Y + num4 * 2.2);
-                        result37.Bottom = (int)((double)PixmapOrigin.Y + num4 * 3.2);
+                        result37.LeftX = (int)((double)PixmapOrigin.X + num4 * -0.21);
+                        result37.RightX = (int)((double)PixmapOrigin.X + num4 * 0.79);
+                        result37.TopY = (int)((double)PixmapOrigin.Y + num4 * 2.2);
+                        result37.BottomY = (int)((double)PixmapOrigin.Y + num4 * 3.2);
                         return result37;
                     }
                 case Def.ButtonGlyph.PauseBack:
                     {
                         TinyRect result36 = default(TinyRect);
-                        result36.Left = (int)((double)PixmapOrigin.X + num4 * 0.79);
-                        result36.Right = (int)((double)PixmapOrigin.X + num4 * 1.79);
-                        result36.Top = (int)((double)PixmapOrigin.Y + num4 * 2.2);
-                        result36.Bottom = (int)((double)PixmapOrigin.Y + num4 * 3.2);
+                        result36.LeftX = (int)((double)PixmapOrigin.X + num4 * 0.79);
+                        result36.RightX = (int)((double)PixmapOrigin.X + num4 * 1.79);
+                        result36.TopY = (int)((double)PixmapOrigin.Y + num4 * 2.2);
+                        result36.BottomY = (int)((double)PixmapOrigin.Y + num4 * 3.2);
                         return result36;
                     }
                 case Def.ButtonGlyph.PauseSetup:
                     {
                         TinyRect result35 = default(TinyRect);
-                        result35.Left = (int)((double)PixmapOrigin.X + num4 * 1.79);
-                        result35.Right = (int)((double)PixmapOrigin.X + num4 * 2.79);
-                        result35.Top = (int)((double)PixmapOrigin.Y + num4 * 2.2);
-                        result35.Bottom = (int)((double)PixmapOrigin.Y + num4 * 3.2);
+                        result35.LeftX = (int)((double)PixmapOrigin.X + num4 * 1.79);
+                        result35.RightX = (int)((double)PixmapOrigin.X + num4 * 2.79);
+                        result35.TopY = (int)((double)PixmapOrigin.Y + num4 * 2.2);
+                        result35.BottomY = (int)((double)PixmapOrigin.Y + num4 * 3.2);
                         return result35;
                     }
                 case Def.ButtonGlyph.PauseRestart:
                     {
                         TinyRect result34 = default(TinyRect);
-                        result34.Left = (int)((double)PixmapOrigin.X + num4 * 2.79);
-                        result34.Right = (int)((double)PixmapOrigin.X + num4 * 3.79);
-                        result34.Top = (int)((double)PixmapOrigin.Y + num4 * 2.2);
-                        result34.Bottom = (int)((double)PixmapOrigin.Y + num4 * 3.2);
+                        result34.LeftX = (int)((double)PixmapOrigin.X + num4 * 2.79);
+                        result34.RightX = (int)((double)PixmapOrigin.X + num4 * 3.79);
+                        result34.TopY = (int)((double)PixmapOrigin.Y + num4 * 2.2);
+                        result34.BottomY = (int)((double)PixmapOrigin.Y + num4 * 3.2);
                         return result34;
                     }
                 case Def.ButtonGlyph.PauseContinue:
                     {
                         TinyRect result33 = default(TinyRect);
-                        result33.Left = (int)((double)PixmapOrigin.X + num4 * 3.79);
-                        result33.Right = (int)((double)PixmapOrigin.X + num4 * 4.79);
-                        result33.Top = (int)((double)PixmapOrigin.Y + num4 * 2.2);
-                        result33.Bottom = (int)((double)PixmapOrigin.Y + num4 * 3.2);
+                        result33.LeftX = (int)((double)PixmapOrigin.X + num4 * 3.79);
+                        result33.RightX = (int)((double)PixmapOrigin.X + num4 * 4.79);
+                        result33.TopY = (int)((double)PixmapOrigin.Y + num4 * 2.2);
+                        result33.BottomY = (int)((double)PixmapOrigin.Y + num4 * 3.2);
                         return result33;
                     }
                 case Def.ButtonGlyph.ResumeMenu:
                     {
                         TinyRect result32 = default(TinyRect);
-                        result32.Left = (int)((double)PixmapOrigin.X + num4 * 1.29);
-                        result32.Right = (int)((double)PixmapOrigin.X + num4 * 2.29);
-                        result32.Top = (int)((double)PixmapOrigin.Y + num4 * 2.2);
-                        result32.Bottom = (int)((double)PixmapOrigin.Y + num4 * 3.2);
+                        result32.LeftX = (int)((double)PixmapOrigin.X + num4 * 1.29);
+                        result32.RightX = (int)((double)PixmapOrigin.X + num4 * 2.29);
+                        result32.TopY = (int)((double)PixmapOrigin.Y + num4 * 2.2);
+                        result32.BottomY = (int)((double)PixmapOrigin.Y + num4 * 3.2);
                         return result32;
                     }
                 case Def.ButtonGlyph.ResumeContinue:
                     {
                         TinyRect result31 = default(TinyRect);
-                        result31.Left = (int)((double)PixmapOrigin.X + num4 * 2.29);
-                        result31.Right = (int)((double)PixmapOrigin.X + num4 * 3.29);
-                        result31.Top = (int)((double)PixmapOrigin.Y + num4 * 2.2);
-                        result31.Bottom = (int)((double)PixmapOrigin.Y + num4 * 3.2);
+                        result31.LeftX = (int)((double)PixmapOrigin.X + num4 * 2.29);
+                        result31.RightX = (int)((double)PixmapOrigin.X + num4 * 3.29);
+                        result31.TopY = (int)((double)PixmapOrigin.Y + num4 * 2.2);
+                        result31.BottomY = (int)((double)PixmapOrigin.Y + num4 * 3.2);
                         return result31;
                     }
                 case Def.ButtonGlyph.WinLostReturn:
                     {
                         TinyRect result30 = default(TinyRect);
-                        result30.Left = (int)((double)PixmapOrigin.X + num - num3 * 2.2);
-                        result30.Right = (int)((double)PixmapOrigin.X + num - num3 * 1.2);
-                        result30.Top = (int)((double)PixmapOrigin.Y + num3 * 0.2);
-                        result30.Bottom = (int)((double)PixmapOrigin.Y + num3 * 1.2);
+                        result30.LeftX = (int)((double)PixmapOrigin.X + num - num3 * 2.2);
+                        result30.RightX = (int)((double)PixmapOrigin.X + num - num3 * 1.2);
+                        result30.TopY = (int)((double)PixmapOrigin.Y + num3 * 0.2);
+                        result30.BottomY = (int)((double)PixmapOrigin.Y + num3 * 1.2);
                         return result30;
                     }
                 case Def.ButtonGlyph.TrialBuy:
                     {
                         TinyRect result29 = default(TinyRect);
-                        result29.Left = (int)((double)PixmapOrigin.X + num4 * 2.5);
-                        result29.Right = (int)((double)PixmapOrigin.X + num4 * 3.5);
-                        result29.Top = (int)((double)PixmapOrigin.Y + num4 * 2.1);
-                        result29.Bottom = (int)((double)PixmapOrigin.Y + num4 * 3.1);
+                        result29.LeftX = (int)((double)PixmapOrigin.X + num4 * 2.5);
+                        result29.RightX = (int)((double)PixmapOrigin.X + num4 * 3.5);
+                        result29.TopY = (int)((double)PixmapOrigin.Y + num4 * 2.1);
+                        result29.BottomY = (int)((double)PixmapOrigin.Y + num4 * 3.1);
                         return result29;
                     }
                 case Def.ButtonGlyph.TrialCancel:
                     {
                         TinyRect result28 = default(TinyRect);
-                        result28.Left = (int)((double)PixmapOrigin.X + num4 * 3.5);
-                        result28.Right = (int)((double)PixmapOrigin.X + num4 * 4.5);
-                        result28.Top = (int)((double)PixmapOrigin.Y + num4 * 2.1);
-                        result28.Bottom = (int)((double)PixmapOrigin.Y + num4 * 3.1);
+                        result28.LeftX = (int)((double)PixmapOrigin.X + num4 * 3.5);
+                        result28.RightX = (int)((double)PixmapOrigin.X + num4 * 4.5);
+                        result28.TopY = (int)((double)PixmapOrigin.Y + num4 * 2.1);
+                        result28.BottomY = (int)((double)PixmapOrigin.Y + num4 * 3.1);
                         return result28;
                     }
                 case Def.ButtonGlyph.RankingContinue:
                     {
                         TinyRect result27 = default(TinyRect);
-                        result27.Left = (int)((double)PixmapOrigin.X + num4 * 3.5);
-                        result27.Right = (int)((double)PixmapOrigin.X + num4 * 4.5);
-                        result27.Top = (int)((double)PixmapOrigin.Y + num4 * 2.1);
-                        result27.Bottom = (int)((double)PixmapOrigin.Y + num4 * 3.1);
+                        result27.LeftX = (int)((double)PixmapOrigin.X + num4 * 3.5);
+                        result27.RightX = (int)((double)PixmapOrigin.X + num4 * 4.5);
+                        result27.TopY = (int)((double)PixmapOrigin.Y + num4 * 2.1);
+                        result27.BottomY = (int)((double)PixmapOrigin.Y + num4 * 3.1);
                         return result27;
                     }
                 case Def.ButtonGlyph.SetupSounds:
                     {
                         TinyRect result26 = default(TinyRect);
-                        result26.Left = (int)(20.0 + num4 * 0.0);
-                        result26.Right = (int)(20.0 + num4 * 0.5);
-                        result26.Top = (int)(num2 - 20.0 - num4 * 2.0);
-                        result26.Bottom = (int)(num2 - 20.0 - num4 * 1.5);
+                        result26.LeftX = (int)(20.0 + num4 * 0.0);
+                        result26.RightX = (int)(20.0 + num4 * 0.5);
+                        result26.TopY = (int)(num2 - 20.0 - num4 * 2.0);
+                        result26.BottomY = (int)(num2 - 20.0 - num4 * 1.5);
                         return result26;
                     }
                 case Def.ButtonGlyph.SetupJump:
                     {
                         TinyRect result25 = default(TinyRect);
-                        result25.Left = (int)(20.0 + num4 * 0.0);
-                        result25.Right = (int)(20.0 + num4 * 0.5);
-                        result25.Top = (int)(num2 - 20.0 - num4 * 1.5);
-                        result25.Bottom = (int)(num2 - 20.0 - num4 * 1.0);
+                        result25.LeftX = (int)(20.0 + num4 * 0.0);
+                        result25.RightX = (int)(20.0 + num4 * 0.5);
+                        result25.TopY = (int)(num2 - 20.0 - num4 * 1.5);
+                        result25.BottomY = (int)(num2 - 20.0 - num4 * 1.0);
                         return result25;
                     }
                 case Def.ButtonGlyph.SetupZoom:
                     {
                         TinyRect result24 = default(TinyRect);
-                        result24.Left = (int)(20.0 + num4 * 0.0);
-                        result24.Right = (int)(20.0 + num4 * 0.5);
-                        result24.Top = (int)(num2 - 20.0 - num4 * 1.0);
-                        result24.Bottom = (int)(num2 - 20.0 - num4 * 0.5);
+                        result24.LeftX = (int)(20.0 + num4 * 0.0);
+                        result24.RightX = (int)(20.0 + num4 * 0.5);
+                        result24.TopY = (int)(num2 - 20.0 - num4 * 1.0);
+                        result24.BottomY = (int)(num2 - 20.0 - num4 * 0.5);
                         return result24;
                     }
                 case Def.ButtonGlyph.SetupAccel:
                     {
                         TinyRect result23 = default(TinyRect);
-                        result23.Left = (int)(20.0 + num4 * 0.0);
-                        result23.Right = (int)(20.0 + num4 * 0.5);
-                        result23.Top = (int)(num2 - 20.0 - num4 * 0.5);
-                        result23.Bottom = (int)(num2 - 20.0 - num4 * 0.0);
+                        result23.LeftX = (int)(20.0 + num4 * 0.0);
+                        result23.RightX = (int)(20.0 + num4 * 0.5);
+                        result23.TopY = (int)(num2 - 20.0 - num4 * 0.5);
+                        result23.BottomY = (int)(num2 - 20.0 - num4 * 0.0);
                         return result23;
                     }
                 case Def.ButtonGlyph.SetupReset:
                     {
                         TinyRect result22 = default(TinyRect);
-                        result22.Left = (int)(450.0 + num4 * 0.0);
-                        result22.Right = (int)(450.0 + num4 * 0.5);
-                        result22.Top = (int)(num2 - 20.0 - num4 * 2.0);
-                        result22.Bottom = (int)(num2 - 20.0 - num4 * 1.5);
+                        result22.LeftX = (int)(450.0 + num4 * 0.0);
+                        result22.RightX = (int)(450.0 + num4 * 0.5);
+                        result22.TopY = (int)(num2 - 20.0 - num4 * 2.0);
+                        result22.BottomY = (int)(num2 - 20.0 - num4 * 1.5);
                         return result22;
                     }
                 case Def.ButtonGlyph.SetupReturn:
                     {
                         TinyRect result21 = default(TinyRect);
-                        result21.Left = (int)(num - 20.0 - num4 * 0.8);
-                        result21.Right = (int)(num - 20.0 - num4 * 0.0);
-                        result21.Top = (int)(num2 - 20.0 - num4 * 0.8);
-                        result21.Bottom = (int)(num2 - 20.0 - num4 * 0.0);
+                        result21.LeftX = (int)(num - 20.0 - num4 * 0.8);
+                        result21.RightX = (int)(num - 20.0 - num4 * 0.0);
+                        result21.TopY = (int)(num2 - 20.0 - num4 * 0.8);
+                        result21.BottomY = (int)(num2 - 20.0 - num4 * 0.0);
                         return result21;
                     }
                 case Def.ButtonGlyph.PlayPause:
                     {
                         TinyRect result20 = default(TinyRect);
-                        result20.Left = (int)(num - num3 * 0.7);
-                        result20.Right = (int)(num - num3 * 0.2);
-                        result20.Top = (int)(num3 * 0.2);
-                        result20.Bottom = (int)(num3 * 0.7);
+                        result20.LeftX = (int)(num - num3 * 0.7);
+                        result20.RightX = (int)(num - num3 * 0.2);
+                        result20.TopY = (int)(num3 * 0.2);
+                        result20.BottomY = (int)(num3 * 0.7);
                         return result20;
                     }
                 case Def.ButtonGlyph.PlayAction:
@@ -819,17 +820,17 @@ namespace WindowsPhoneSpeedyBlupi
                         if (gameData.JumpRight)
                         {
                             TinyRect result16 = default(TinyRect);
-                            result16.Left = (int)((double)drawBounds.Width - num3 * 1.2);
-                            result16.Right = (int)((double)drawBounds.Width - num3 * 0.2);
-                            result16.Top = (int)(num2 - num3 * 2.6);
-                            result16.Bottom = (int)(num2 - num3 * 1.6);
+                            result16.LeftX = (int)((double)drawBounds.Width - num3 * 1.2);
+                            result16.RightX = (int)((double)drawBounds.Width - num3 * 0.2);
+                            result16.TopY = (int)(num2 - num3 * 2.6);
+                            result16.BottomY = (int)(num2 - num3 * 1.6);
                             return result16;
                         }
                         TinyRect result17 = default(TinyRect);
-                        result17.Left = (int)(num3 * 0.2);
-                        result17.Right = (int)(num3 * 1.2);
-                        result17.Top = (int)(num2 - num3 * 2.6);
-                        result17.Bottom = (int)(num2 - num3 * 1.6);
+                        result17.LeftX = (int)(num3 * 0.2);
+                        result17.RightX = (int)(num3 * 1.2);
+                        result17.TopY = (int)(num2 - num3 * 2.6);
+                        result17.BottomY = (int)(num2 - num3 * 1.6);
                         return result17;
                     }
                 case Def.ButtonGlyph.PlayJump:
@@ -837,17 +838,17 @@ namespace WindowsPhoneSpeedyBlupi
                         if (gameData.JumpRight)
                         {
                             TinyRect result12 = default(TinyRect);
-                            result12.Left = (int)((double)drawBounds.Width - num3 * 1.2);
-                            result12.Right = (int)((double)drawBounds.Width - num3 * 0.2);
-                            result12.Top = (int)(num2 - num3 * 1.2);
-                            result12.Bottom = (int)(num2 - num3 * 0.2);
+                            result12.LeftX = (int)((double)drawBounds.Width - num3 * 1.2);
+                            result12.RightX = (int)((double)drawBounds.Width - num3 * 0.2);
+                            result12.TopY = (int)(num2 - num3 * 1.2);
+                            result12.BottomY = (int)(num2 - num3 * 0.2);
                             return result12;
                         }
                         TinyRect result13 = default(TinyRect);
-                        result13.Left = (int)(num3 * 0.2);
-                        result13.Right = (int)(num3 * 1.2);
-                        result13.Top = (int)(num2 - num3 * 1.2);
-                        result13.Bottom = (int)(num2 - num3 * 0.2);
+                        result13.LeftX = (int)(num3 * 0.2);
+                        result13.RightX = (int)(num3 * 1.2);
+                        result13.TopY = (int)(num2 - num3 * 1.2);
+                        result13.BottomY = (int)(num2 - num3 * 0.2);
                         return result13;
                     }
                 case Def.ButtonGlyph.PlayDown:
@@ -855,71 +856,71 @@ namespace WindowsPhoneSpeedyBlupi
                         if (gameData.JumpRight)
                         {
                             TinyRect result8 = default(TinyRect);
-                            result8.Left = (int)(num3 * 0.2);
-                            result8.Right = (int)(num3 * 1.2);
-                            result8.Top = (int)(num2 - num3 * 1.2);
-                            result8.Bottom = (int)(num2 - num3 * 0.2);
+                            result8.LeftX = (int)(num3 * 0.2);
+                            result8.RightX = (int)(num3 * 1.2);
+                            result8.TopY = (int)(num2 - num3 * 1.2);
+                            result8.BottomY = (int)(num2 - num3 * 0.2);
                             return result8;
                         }
                         TinyRect result9 = default(TinyRect);
-                        result9.Left = (int)((double)drawBounds.Width - num3 * 1.2);
-                        result9.Right = (int)((double)drawBounds.Width - num3 * 0.2);
-                        result9.Top = (int)(num2 - num3 * 1.2);
-                        result9.Bottom = (int)(num2 - num3 * 0.2);
+                        result9.LeftX = (int)((double)drawBounds.Width - num3 * 1.2);
+                        result9.RightX = (int)((double)drawBounds.Width - num3 * 0.2);
+                        result9.TopY = (int)(num2 - num3 * 1.2);
+                        result9.BottomY = (int)(num2 - num3 * 0.2);
                         return result9;
                     }
                 case Def.ButtonGlyph.Cheat11:
                     {
                         TinyRect result7 = default(TinyRect);
-                        result7.Left = (int)(num5 * 0.0);
-                        result7.Right = (int)(num5 * 1.0);
-                        result7.Top = (int)(num5 * 0.0);
-                        result7.Bottom = (int)(num5 * 1.0);
+                        result7.LeftX = (int)(num5 * 0.0);
+                        result7.RightX = (int)(num5 * 1.0);
+                        result7.TopY = (int)(num5 * 0.0);
+                        result7.BottomY = (int)(num5 * 1.0);
                         return result7;
                     }
                 case Def.ButtonGlyph.Cheat12:
                     {
                         TinyRect result6 = default(TinyRect);
-                        result6.Left = (int)(num5 * 0.0);
-                        result6.Right = (int)(num5 * 1.0);
-                        result6.Top = (int)(num5 * 1.0);
-                        result6.Bottom = (int)(num5 * 2.0);
+                        result6.LeftX = (int)(num5 * 0.0);
+                        result6.RightX = (int)(num5 * 1.0);
+                        result6.TopY = (int)(num5 * 1.0);
+                        result6.BottomY = (int)(num5 * 2.0);
                         return result6;
                     }
                 case Def.ButtonGlyph.Cheat21:
                     {
                         TinyRect result5 = default(TinyRect);
-                        result5.Left = (int)(num5 * 1.0);
-                        result5.Right = (int)(num5 * 2.0);
-                        result5.Top = (int)(num5 * 0.0);
-                        result5.Bottom = (int)(num5 * 1.0);
+                        result5.LeftX = (int)(num5 * 1.0);
+                        result5.RightX = (int)(num5 * 2.0);
+                        result5.TopY = (int)(num5 * 0.0);
+                        result5.BottomY = (int)(num5 * 1.0);
                         return result5;
                     }
                 case Def.ButtonGlyph.Cheat22:
                     {
                         TinyRect result4 = default(TinyRect);
-                        result4.Left = (int)(num5 * 1.0);
-                        result4.Right = (int)(num5 * 2.0);
-                        result4.Top = (int)(num5 * 1.0);
-                        result4.Bottom = (int)(num5 * 2.0);
+                        result4.LeftX = (int)(num5 * 1.0);
+                        result4.RightX = (int)(num5 * 2.0);
+                        result4.TopY = (int)(num5 * 1.0);
+                        result4.BottomY = (int)(num5 * 2.0);
                         return result4;
                     }
                 case Def.ButtonGlyph.Cheat31:
                     {
                         TinyRect result3 = default(TinyRect);
-                        result3.Left = (int)(num5 * 2.0);
-                        result3.Right = (int)(num5 * 3.0);
-                        result3.Top = (int)(num5 * 0.0);
-                        result3.Bottom = (int)(num5 * 1.0);
+                        result3.LeftX = (int)(num5 * 2.0);
+                        result3.RightX = (int)(num5 * 3.0);
+                        result3.TopY = (int)(num5 * 0.0);
+                        result3.BottomY = (int)(num5 * 1.0);
                         return result3;
                     }
                 case Def.ButtonGlyph.Cheat32:
                     {
                         TinyRect result2 = default(TinyRect);
-                        result2.Left = (int)(num5 * 2.0);
-                        result2.Right = (int)(num5 * 3.0);
-                        result2.Top = (int)(num5 * 1.0);
-                        result2.Bottom = (int)(num5 * 2.0);
+                        result2.LeftX = (int)(num5 * 2.0);
+                        result2.RightX = (int)(num5 * 3.0);
+                        result2.TopY = (int)(num5 * 1.0);
+                        result2.BottomY = (int)(num5 * 2.0);
                         return result2;
                     }
                 default:
