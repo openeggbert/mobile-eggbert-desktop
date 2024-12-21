@@ -2,8 +2,10 @@
 // WindowsPhoneSpeedyBlupi.Def
 
 
+using System.Diagnostics;
+
 namespace WindowsPhoneSpeedyBlupi
-{    
+{
 
     public static class Def
     {
@@ -86,7 +88,7 @@ namespace WindowsPhoneSpeedyBlupi
 
         public enum KeyboardPress
         {
-            None, Up, Right, Down, Left, LeftControl, Space, Escape, Pause
+            None = 0, Up = 1, Right = 2, Down = 3, Left = 4, LeftControl = 5, Space = 6, Escape = 7, Pause = 8
         }
 
         public const int LXIMAGE = 640;
