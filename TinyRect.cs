@@ -13,6 +13,14 @@ namespace WindowsPhoneSpeedyBlupi
 
         public int BottomY;
 
+        public TinyRect(int leftX, int rightX, int topY, int bottomY)
+        {
+            LeftX = leftX;
+            RightX = rightX;
+            TopY = topY;
+            BottomY = bottomY;
+        }
+
         public int Width
         {
             get
