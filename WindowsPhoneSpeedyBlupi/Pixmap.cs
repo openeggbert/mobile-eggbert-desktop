@@ -6,6 +6,8 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using WindowsPhoneSpeedyBlupi;
 using static System.Net.Mime.MediaTypeNames;
+using static WindowsPhoneSpeedyBlupi.Def;
+using static WindowsPhoneSpeedyBlupi.Xna;
 
 namespace WindowsPhoneSpeedyBlupi
 {
@@ -66,7 +68,7 @@ namespace WindowsPhoneSpeedyBlupi
                 TinyRect result = default(TinyRect);
                 double screenWidth = graphics.GraphicsDevice.Viewport.Width;
                 double screenHeight = graphics.GraphicsDevice.Viewport.Height;
-                if(Def.PLATFORM == Def.Platform.Android && screenHeight > 480) {
+                if(Env.PLATFORM == Platform.Android && screenHeight > 480) {
                     screenWidth = screenHeight * (640f / 480f);
                 }
                 if (screenWidth != 0.0 && screenHeight != 0.0)
@@ -248,7 +250,7 @@ namespace WindowsPhoneSpeedyBlupi
         {
             double screenWidth = graphics.GraphicsDevice.Viewport.Width;
             double screenHeight = graphics.GraphicsDevice.Viewport.Height;
-            if (Def.PLATFORM == Def.Platform.Android && screenHeight > 480)
+            if (Env.PLATFORM == Platform.Android && screenHeight > 480)
             {
                 screenWidth = screenHeight * (640f / 480f);
             }
@@ -279,7 +281,7 @@ namespace WindowsPhoneSpeedyBlupi
         {
             double screenWidth = graphics.GraphicsDevice.Viewport.Width;
             double screenHeight = graphics.GraphicsDevice.Viewport.Height;
-            if (Def.PLATFORM == Def.Platform.Android && screenHeight > 480)
+            if (Env.PLATFORM == Platform.Android && screenHeight > 480)
             {
                 screenWidth = screenHeight * (640f / 480f);
             }

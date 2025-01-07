@@ -7,7 +7,7 @@ using System.Linq;
 using Microsoft.Devices.Sensors;
 using Microsoft.Xna.Framework.Input;
 using Microsoft.Xna.Framework.Input.Touch;
-using static WindowsPhoneSpeedyBlupi.Def;
+using static WindowsPhoneSpeedyBlupi.Xna;
 
 namespace WindowsPhoneSpeedyBlupi
 {
@@ -265,7 +265,7 @@ namespace WindowsPhoneSpeedyBlupi
             float screenHeight = game1.getGraphics().GraphicsDevice.Viewport.Height;
             float screenRatio = screenWidth / screenHeight;
 
-            if (Def.PLATFORM == Platform.Android &&screenRatio > 1.3333333333333333)
+            if (Env.PLATFORM == Platform.Android &&screenRatio > 1.3333333333333333)
             {
                 for (int i = 0; i < touchesOrClicks.Count; i++)
                 {
@@ -279,7 +279,7 @@ namespace WindowsPhoneSpeedyBlupi
                     float widthHeightRatio = screenWidth / screenHeight;
                     float heightRatio = 480 / screenHeight;
                     float widthRatio = 640 / screenWidth;
-                    if(Def.DETAILED_DEBUGGING)
+                    if(Env.DETAILED_DEBUGGING)
                     {
                     Debug.WriteLine("-----");
                     Debug.WriteLine("originalX=" + originalX);
@@ -294,8 +294,8 @@ namespace WindowsPhoneSpeedyBlupi
                     touchesOrClicks[i] = touchOrClick;
                     }
 
-                    if(Def.DETAILED_DEBUGGING) Debug.WriteLine("new X" + touchOrClick.X);
-                    if(Def.DETAILED_DEBUGGING) Debug.WriteLine("new Y" + touchOrClick.Y);
+                    if(Env.DETAILED_DEBUGGING) Debug.WriteLine("new X" + touchOrClick.X);
+                    if(Env.DETAILED_DEBUGGING) Debug.WriteLine("new Y" + touchOrClick.Y);
                 }
             }
 

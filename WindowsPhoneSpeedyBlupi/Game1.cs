@@ -98,6 +98,10 @@ namespace WindowsPhoneSpeedyBlupi
 
         public Game1()
         {
+            if(!Env.INITIALIZED)
+            {
+                throw new Exception("Fatal error: Not initialized. Env.init() was not called.");
+            }
             Exiting += OnExiting;
             if(!TouchPanel.GetCapabilities().IsConnected)
             {

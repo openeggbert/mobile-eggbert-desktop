@@ -1,27 +1,15 @@
 ﻿// WindowsPhoneSpeedyBlupi, Version=1.0.0.5, Culture=neutral, PublicKeyToken=6db12cd62dbec439
 // WindowsPhoneSpeedyBlupi.Def
 
-
-
 using Microsoft.Xna.Framework.Input;
+using static WindowsPhoneSpeedyBlupi.Def;
 
 namespace WindowsPhoneSpeedyBlupi
 {
 
     public static class Def
     {
-        public const bool DETAILED_DEBUGGING = false;
-        
-        public const Platform PLATFORM = Platform.Desktop;
-        
-        public enum Platform
-        {
-        	Desktop,
-        	Android,
-        	iOS,
-        	Web
-        }
-        
+
         public enum Phase
         {
             None,
