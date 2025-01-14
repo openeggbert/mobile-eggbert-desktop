@@ -1,11 +1,11 @@
 ﻿using WindowsPhoneSpeedyBlupi;
-using static WindowsPhoneSpeedyBlupi.Xna;
+using static WindowsPhoneSpeedyBlupi.EnvClasses;
 
 static class Program
 {
     static void Main()
     {
-        Env.init(XnaImpl.MonoGame, Platform.Desktop);
+        Env.init(Impl.MonoGame, Platform.Desktop);
         var game = new WindowsPhoneSpeedyBlupi.Game1();
         game.Run();
     }
